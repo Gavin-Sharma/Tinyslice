@@ -1,1 +1,1 @@
-# CIT-2911
+# CIT-2911 Grocery Expense Tracker

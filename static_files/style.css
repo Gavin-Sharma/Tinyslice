@@ -1,3 +1,135 @@
+html, body, section {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: #CAE8FC;
+    font-family: sans-serif;
+}
+
+.header-container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+header {
+    background: #FFFF;
+}
+
+header::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.company-logo {
+    float: left;
+}
+
+.nav-links {
+    float: right;
+}
+
+.main-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.main-links li {
+    display: inline-block;
+    margin-left: 20px;
+    padding-top: 10px;
+}
+
+.main-links a {
+    color: black;
+    text-decoration: none;
+    font-weight: 100;
+}
+
+/* CSS for the main area */
+.main-area {
+    display: flex;
+}
+
+h2 {
+    padding-left: 20px;
+}
+
+.side-nav {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0.1;
+    background-color: #FFF0F8;
+}
+
 h1 {
-    color: aqua;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+#created-lists {
+    margin: none;
+    padding: none;
+
+}
+
+.newlist-button {
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+}
+
+/* Code to enter the list title */
+#list-title {
+    display: flex;
+    padding-left: 40px;
+    padding-top: 60px;
+}  
+
+#next-button {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 5px;
+}
+
+/* Setting up grocery add items */
+#add-grocery-list {
+    display: flex;
+    flex-grow: 0.5;
+    justify-content: space-around;
+}
+
+#no-style {
+    list-style: none;
+    padding-left: 0;
+}
+
+#button-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Viewing the list of groceries */
+#viewing-list {
+    display: flex;
+    justify-content: space-around;
+    flex-grow: 0.5;
+    height: max-content;
+    align-items: flex-end;
+}
+
+#view-items, #view-prices {
+    list-style: none;
+    padding-left: 0;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }

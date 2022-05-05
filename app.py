@@ -1,7 +1,17 @@
 import json
 from flask import Flask, request, jsonify, render_template
+from flask_nav import Nav
+from flask_nav.elements import Navbar, Subgroup, View, Link, Text, Separator
+
 #initialize the Flask application
 app = Flask(__name__, static_folder="static_files")
+nav = Nav(app)
+
+#Control Navigation Bar (https://www.youtube.com/watch?v=EJwGV1gjVkY)
+nav.register_element('my_navbar', Navbar(
+    'thenav',
+    View('Home', 'homepage'),
+    View('Contact us', 'contact')))
 
 # when the app receives a request at the "/" endpoint, it will activate this function
 @app.route("/")
@@ -9,6 +19,12 @@ def homepage():
     """Renders the main page"""
     # renders the index.html file and sends the 200 OK HTTP status code
     return render_template("index.html"), 200
+
+@app.route("/contact")
+def contact():
+    """Renders the contact page"""
+    # renders the contact.html file and sends the 200 OK HTTP status code
+    return render_template("contact.html"), 200
 
 # this route only works with GET requests
 # later we will copy this route but with the POST method to add items to the list
@@ -21,6 +37,7 @@ def return_grocery_list():
         data = json.load(fp)
     # from jsonify intellisense: Serialize data to JSON and wrap it in a ~flask.Response with the application/json mimetype
     return jsonify(data), 200
+
 
 if __name__ == "__main__":
     # debug must be set to false in production

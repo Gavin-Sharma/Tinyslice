@@ -1,4 +1,7 @@
-import pytest, flask, requests
+import pytest
+import flask
+import requests
+
 
 @pytest.fixture
 def client():
@@ -6,4 +9,3 @@ def client():
     data = response.json()
     assert response.status_code == 200
     assert data[0]["name"] == "Apple"
-    

@@ -201,4 +201,5 @@ footer {
     position: fixed;
     right: 90px;
     top: 150px;
+    border-radius: 10%;
 }

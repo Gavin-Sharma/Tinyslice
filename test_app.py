@@ -23,7 +23,7 @@ def test_request_index(client):
 
 def test_request_contact(client):
     response = client.get("/contact")
-    assert b"<h1 class=\"contact-hone\">Contact us</h1>" in response.data
+    assert b"<h1 class=\"contact-home\">Contact us</h1>" in response.data
 
 def test_api_grocery_list(client):
     response = client.get("/api/grocery_list")

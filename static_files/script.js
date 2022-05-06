@@ -149,7 +149,7 @@ function show_list(selected_id) {
     total_cost = total_cost + items.price;
   }
   const remove_items_shown = document.getElementById('item-shown')
-  const insert_cost = `<p id="cost-total">Total Cost: $${total_cost}</p>`
+  const insert_cost = `<p id="cost-total"><b>Total Cost:<b> $${total_cost}</p>`
   const display_cost = document.getElementById('display-cost')
   display_cost.insertAdjacentHTML('beforeend', insert_cost)
 

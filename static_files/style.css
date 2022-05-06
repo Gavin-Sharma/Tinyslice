@@ -131,6 +131,10 @@ h2 {
     padding-left: 0;
 }
 
+#no-style li {
+    padding-top: 3.5px;
+}
+
 #button-group {
     display: flex;
     flex-direction: column;
@@ -198,9 +202,32 @@ th {
     padding-bottom: 5px;
 }
 
-/* @media (max-width: 882px) {
+@media (max-width: 927px) {
+    .side-nav {
+        flex-grow: 0.2;
+    }
+    .side-nav-header {
+        font-size: 20px;
+    }
 
-} */
+    #second-header h2 {
+        font-size: 15px;
+    }
+
+    #next-button {
+        display: flex;
+        justify-content: center;
+    }
+
+    #created-list {
+        padding-left: 0px;
+    }
+
+    #display-cost {
+        position: absolute;
+        bottom: 50px;
+    }
+}
 
 
 /* CSS for mobile devices */

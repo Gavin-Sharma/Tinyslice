@@ -92,7 +92,6 @@ h2 {
     font-size: 25px;
     text-align: center;
     margin-bottom: 0;
-    /* padding-left: 10px; */
 }
 
 #created-lists {
@@ -159,47 +158,77 @@ footer {
 }
 
 /* Contact us page */
-.contact-hone {
+.main-screen {
     display: flex;
+    justify-content: space-around;
 }
 
-.main-contact {
-    position: fixed;
-    padding-left: 160px;
+.main-contact, .photo-staff {
     padding-top: 100px;
-    font-size: 2rem;
-
 }
 
-.operation-hours {
-    position: fixed;
-    padding-left: 160px;
-    padding-top: 425px;
-    font-size: 1.5rem;
+.staff-photo {
+    aspect-ratio: 1.49;
+    max-width: 600px;
+    border-radius: 10%;
 }
 
-.operation-hours h2 {
-    padding-left: 10px;
-    margin-bottom: 0px;
+.operation-title {
+    padding-left: 0px;
 }
 
 .hours {
     list-style: none;
-    border-style: solid;
-    padding-left: 20px;
-    margin-top: 5px;
+    border: solid black;
+    padding-left: 15px;
 }
 
 .hours li {
-    padding-bottom: 5px;
     padding-top: 10px;
-    padding-left: 0px;
-    margin-left: 0px;
+    padding-bottom: 5px;
 }
+ 
 
-.staff-photo {
-    position: fixed;
-    right: 90px;
-    top: 150px;
-    border-radius: 10%;
+
+/* CSS for mobile devices */
+@media (max-width: 766px) {
+    /* home page */
+
+    /* contact us page */
+    .main-screen {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .main-contact {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .operation-hours {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hours {
+        list-style: none;
+    }
+
+    .hours li {
+        padding: 10px;
+    }
+
+    .photo-staff {
+        padding-top: 40px;
+        text-align: center;
+    }
+
+    .staff-photo {
+        text-align: center;
+        width: 80%;
+        border-radius: 10%;
+    }
 }

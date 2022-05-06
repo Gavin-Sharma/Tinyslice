@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,33 +9,41 @@
     <script defer src="/static_files/script.js"></script>
     <title>Contact</title>
 </head>
+
 <body>
     <header>
         <div class="header-container">
-            <img src="/static_files/img/tinyslice_logo.jpg" alt="company logo" class="company-logo" width="100" height="40">
+            <img src="/static_files/img/tinyslice_logo.jpg" alt="company logo" class="company-logo" width="100"
+                height="40">
             {{ nav.my_navbar.render() }}
         </div>
     </header>
-<body class="contact-body">
-    <img src="/static_files/img/staff_photo.jpg" alt="staff photo" class="staff-photo">
-    <div class="main-contact">
-       <h1 class="contact-hone">Contact us</h1>
-       <div class="contact-info">
-           <p>Email: tinyslice@gmail.com</p>
-           <p>Phone number: 111-222-3333</p>
-       </div> 
-    </div>
-    <div class="operation-hours">
-        <h2>Hours of Operation</h2>
-        <ul class="hours">
-            <li>Mon-Fri: 10am - 6pm</li>
-            <li>Sat: 10am - 3pm</li>
-            <li>Sun: Closed</li>
-        </ul>
-    </div>
-    <footer>
-        tinyslice
-    </footer>
 
+    <div class="main-screen">
+        <div class="contact-information">
+            <div class="main-contact">
+                <h1 class="contact-home">Contact us</h1>
+                <div class="contact-info">
+                    <p>Email: tinyslice@gmail.com</p>
+                    <p>Phone number: 111-222-3333</p>
+                </div>
+            </div>
+            <div class="operation-hours">
+                <h2 class="operation-title">Hours of Operation</h2>
+                <ul class="hours">
+                    <li>Mon-Fri: 10am - 6pm</li>
+                    <li>Sat: 10am - 3pm</li>
+                    <li>Sun: Closed</li>
+                </ul>
+            </div>
+        </div>
+        <div class="photo-staff">
+            <img src="/static_files/img/staff_photo.jpg" alt="staff photo" class="staff-photo">
+        </div>
+        <footer>
+            tinyslice
+        </footer>
+    </div>
 </body>
+
 </html>

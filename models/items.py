@@ -1,26 +1,19 @@
-from multiprocessing.sharedctypes import Value
-
-
 class Item:
     def __init__(self, name=None, price=0, quantity=0):
-        if isinstance(name, int):
-            raise ValueError
-        else:
+        if isinstance(name, str) and name is not None:
             self.name = name
-            
-        if isinstance(price, int):
-            raise ValueError
-        elif isinstance(price, str):
-            raise ValueError
         else:
+            raise ValueError
+
+        if isinstance(price, float):
             self.price = price
-            
-        if isinstance(quantity, str):
-            raise ValueError
-        elif isinstance(quantity, float):
-            raise ValueError
         else:
+            raise ValueError
+    
+        if isinstance(quantity, int):
             self.quantity = quantity
+        else:
+            raise ValueError
         
     def to_dict(self):
         return self.__dict__

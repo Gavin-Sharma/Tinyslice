@@ -77,20 +77,22 @@ header::after {
 }
 
 h2 {
+    padding-top: 40px;
     padding-left: 20px;
 }
 
 .side-nav {
     display: flex;
     flex-direction: column;
-    flex-grow: 0.1;
+    flex-grow: 0.2;
     background-color: #FFF0F8;
 }
 
-.style-nav h1 {
-    font-size: 20px;
+.side-nav-header {
+    font-size: 25px;
     text-align: center;
     margin-bottom: 0;
+    /* padding-left: 10px; */
 }
 
 #created-lists {
@@ -157,7 +159,7 @@ footer {
 }
 
 /* Contact us page */
-.contact-h1 {
+.contact-hone {
     display: flex;
 }
 

@@ -1,4 +1,6 @@
+from asyncore import read
 import json
+from this import d
 
 class Manage_Data():
     def __init__(self):
@@ -30,6 +32,19 @@ class Manage_Data():
         with open("static_files/data.json") as f:
             json_data = json.load(f)
             return json_data
+    
+    def get_list_names(self):
+        """"""
+        #reads the json file
+        with open("static_files/data.json") as f:
+            json_data = json.load(f)
+        
+        #gets only the list names and appends to a list
+        data_list_names = []
+        for data in json_data:
+            data_list_names.append(data["list_name"])
+        
+        return data_list_names 
 
 
 

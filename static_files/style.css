@@ -165,7 +165,7 @@ footer {
 
 .main-contact {
     position: fixed;
-    padding-left: 80px;
+    padding-left: 160px;
     padding-top: 100px;
     font-size: 2rem;
 
@@ -173,7 +173,7 @@ footer {
 
 .operation-hours {
     position: fixed;
-    padding-left: 80px;
+    padding-left: 160px;
     padding-top: 425px;
     font-size: 1.5rem;
 }
@@ -195,4 +195,10 @@ footer {
     padding-top: 10px;
     padding-left: 0px;
     margin-left: 0px;
+}
+
+.staff-photo {
+    position: fixed;
+    right: 90px;
+    top: 150px;
 }

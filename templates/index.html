@@ -4,87 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static_files/style.css">
-    <script defer src="/static_files/script.js"></script>
-    <title>Grocery List</title>
+    <title>Document</title>
 </head>
 <body>
-    
-    <header>
-        <div class="header-container">
-            <img src="/static_files/img/tinyslice_logo.jpg" alt="company logo" class="company-logo" width="100" height="40">
-            {{ nav.my_navbar.render() }} <!-- renders navigation bar-->
-        </div>
-    </header>
+    <h1>Welcome Page</h1>
 
-    <section class="main-area">
-        <div class="side-nav">
-            <h1 class="side-nav-header">Grocery Lists</h1>
-            <nav>
-                <ul id="created-lists">
-                </ul>
-            </nav>
-        </div>
-        <div id="second-header">
-            <h2>Click on the plus button below to create a new grocery list!!</h2>
-        </div>
-        <div id="list-title">
-            <div>
-                <label for="newlist-title">Enter a title for your list</label>
-                <input id="newlist-title" name="newlist-title" type="text" placeholder="Grocery List 1"> 
-                <div id="next-button">
-                    <button id="button-next">next</button>
-                </div>
-            </div>  
-        </div>
-        <div id="add-grocery-list"> 
-            <article class="list">
-                <h3 class="list-title">Items</h3>
-                <ul id="no-style">
-                    <li>Apple</li>
-                    <li>Orange</li>
-                    <li>Pear</li>
-                    <li>Grape</li>
-                </ul>
-            </article>
-            <article class="list">
-                <h3 class="list-title">Price</h3>
-                <ul id="no-style">
-                    <li>$1.99</li>
-                    <li>$1.25</li>
-                    <li>$2.99</li>
-                    <li>$3.99</li>
-                </ul>
-            </article>
-            <article id="button-group">
-                <h3 class="list-title">Add</h3>
-                <button id="0">Add</button>
-                <button id="1">Add</button>
-                <button id="2">Add</button>
-                <button id="3">Add</button>
-            </article>
-        </div>
-        <div id="viewing-list">
-            <article class="list">
-                <h3 class="list-title">Items</h3>
-                <ul id="view-items">
-                </ul>
-            </article>
-            <article class="list">
-                <h3 class="list-title">Price</h3>
-                <ul id="view-prices">
-                </ul>
-            </article>
-            <article id="display-cost">
-            </article>
-        </div>
-        <div class="newlist-button">
-            <button id="newlist-button">Create new List</button>
-        </div>
-    <footer>
-        <p>tinyslice</p>
-    </footer>
-    </section>
-    
 </body>
 </html>

@@ -1,44 +1,37 @@
+from flask import Flask, request, jsonify, render_template, redirect, url_for
 import json
-from flask import Flask, request, jsonify, render_template
-from flask_nav import Nav
-from flask_nav.elements import Navbar, Subgroup, View, Link, Text, Separator
+from manage_data import Manage_Data
 
-#initialize the Flask application
+# initialize the Flask application
 app = Flask(__name__, static_folder="static_files")
-nav = Nav(app)
 
-#Control Navigation Bar (https://www.youtube.com/watch?v=EJwGV1gjVkY)
-nav.register_element('my_navbar', Navbar(
-    'thenav',
-    View('Home', 'homepage'),
-    View('Contact us', 'contact')))
 
-# when the app receives a request at the "/" endpoint, it will activate this function
 @app.route("/")
 def homepage():
-    """Renders the main page"""
-    # renders the index.html file and sends the 200 OK HTTP status code
-    return render_template("index.html"), 200
+    return render_template("index.html")
 
-@app.route("/contact")
-def contact():
-    """Renders the contact page"""
-    # renders the contact.html file and sends the 200 OK HTTP status code
-    return render_template("contact.html"), 200
+@app.route("/grocery", methods = ["POST", "GET"])
+def grocery():
+    """This page allows users to only add things to a grocery list"""
+    if request.method == "POST":
+        list_name_data = request.form["listName"] #get list name from form
+        item_name_data = request.form["itemName"] #get item name from form
+        item_price_data = request.form["itemPrice"] #get item price from form
 
-# this route only works with GET requests
-# later we will copy this route but with the POST method to add items to the list
-# we can also use PATCH request to edit the list
-@app.route("/api/grocery_list", methods = ["GET"])
-def return_grocery_list():
-    """Returns a json of the grocery objects stored in the server"""
-    # opens the grocery list json file in a read-only state
-    with open("grocery_list.json", "r") as fp:
-        data = json.load(fp)
-    # from jsonify intellisense: Serialize data to JSON and wrap it in a ~flask.Response with the application/json mimetype
-    return jsonify(data), 200
+        #insitince of Manage_Data class
+        manage_data = Manage_Data()
+
+        #process to save data
+        formated_data = manage_data.to_dict(list_name_data, item_name_data, item_price_data) #formats data
+        save_data = manage_data.save(formated_data)
+
+        #process to show data
+        json_data = manage_data.read()
+        
+        return render_template("grocery.html", data = json_data)
+
+
 
 
 if __name__ == "__main__":
-    # debug must be set to false in production
     app.run(debug=True)

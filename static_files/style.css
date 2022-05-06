@@ -177,6 +177,16 @@ footer {
     padding-left: 0px;
 }
 
+table {
+    border-spacing: 0px;
+    
+}
+
+th {
+    border: solid black;
+    padding: 10px;
+}
+
 .hours {
     list-style: none;
     border: solid black;
@@ -187,13 +197,14 @@ footer {
     padding-top: 10px;
     padding-bottom: 5px;
 }
- 
+
+/* @media (max-width: 882px) {
+
+} */
 
 
 /* CSS for mobile devices */
 @media (max-width: 766px) {
-    /* home page */
-
     /* contact us page */
     .main-screen {
         display: flex;

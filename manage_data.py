@@ -1,6 +1,4 @@
-from asyncore import read
 import json
-from this import d
 
 class Manage_Data():
     def __init__(self):
@@ -13,7 +11,7 @@ class Manage_Data():
                 "item_price": item_price
                }
     
-    def save(self, data): #ISSUE: this funtion adds the data to data.json but clears everything. what if we read the  file first
+    def save(self, data):
         """ 
         This function should just save the data to a json file with a correct format so make sure to run to_dict funtion first than
         pass the to_dict return variable into the save(data) as an argument. The json data should be a list [] 

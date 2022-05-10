@@ -1,1 +1,51 @@
-[]
+[
+    {
+        "list_name": "llist1",
+        "grocery": [
+            [
+                "milk",
+                "5"
+            ],
+            [
+                "egg",
+                "3"
+            ]
+        ]
+    },
+    {
+        "list_name": "list2",
+        "grocery": [
+            [
+                "egg",
+                "3"
+            ]
+        ]
+    },
+    {
+        "list_name": "list1",
+        "grocery": [
+            [
+                "bread",
+                "3"
+            ]
+        ]
+    },
+    {
+        "list_name": "zdc",
+        "grocery": [
+            [
+                "zxc",
+                "zxc"
+            ]
+        ]
+    },
+    {
+        "list_name": "LIST2",
+        "grocery": [
+            [
+                "DFS",
+                "EDFSF"
+            ]
+        ]
+    }
+]

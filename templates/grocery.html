@@ -28,14 +28,13 @@
 
     <!--Below will loop over the json data and show it in a list format-->
     <ul> 
-        {% for i in data %}
-            <ul>
-                <li>{{ i.list_name }}</li>
+        {% for i in grocery_lists %}
+            <li>{{ i.list_name }}</li>
                 <ul>
-                    <li>{{ i.item_name }}</li>
-                    <li>{{ i.item_price }}</li>
+                    {% for grocery in i.grocery %}
+                    <li>{{ grocery[0] }}: ${{ grocery[1] }}</li>
+                    {% endfor %}
                 </ul>
-            </ul>
         {% endfor %}
     </ul>
 

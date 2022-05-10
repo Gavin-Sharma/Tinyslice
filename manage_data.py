@@ -6,51 +6,46 @@ class Manage_Data():
 
     def to_dict(self, list_name, item_name, item_price):
         """ This funtion just formats the data before it should be written into the json file """
-        return {"list_name": list_name,
-                "item_name": item_name,
-                "item_price": item_price
-               }
-    
-    def save(self, data):
-        """ 
-        This function should just save the data to a json file with a correct format so make sure to run to_dict funtion first than
-        pass the to_dict return variable into the save(data) as an argument. The json data should be a list [] 
-        """
 
-        #reads the whole json file and appends it into a list called json_data
+        return  {
+                "list_name": list_name,
+                "grocery":[[item_name, item_price]]
+                }
+    
+    def save(self, data, list_name, item_name, item_price):
+        #Reads json file
         with open("static_files/data.json") as f:
             json_data = json.load(f)
+
+        #Keep track of all the list names
+        all_list_names = []
+    
+        #Appends data to existing list
+        for i in json_data:
+            if i["list_name"] == list_name:
+                i["grocery"].append([item_name, item_price])
+            
+            all_list_names.append(i["list_name"])
+        
+        #Creates a new list and adds the data
+        if list_name not in all_list_names:
             json_data.append(data)
         
-        #after read the json data above, this will append the data you want to data in the format you want. 
+        #Writes to the json file
         with open("static_files/data.json", "w") as f:
             json.dump(json_data, f)
     
     def read(self):
+        """Reads the json file and return the read file"""
         with open("static_files/data.json") as f:
             json_data = json.load(f)
             return json_data
-    
-    def get_list_names(self):
-        """"""
-        #reads the json file
-        with open("static_files/data.json") as f:
-            json_data = json.load(f)
-        
-        #gets only the list names and appends to a list
-        data_list_names = []
-        for data in json_data:
-            data_list_names.append(data["list_name"])
-        
-        return data_list_names 
-
-
-
 
 
 def main():
-    x = Manage_Data()
-    x.save({'list_name': 'gavinlist', 'item_name': 'pizza', 'item_price': '1'})
+    test1 = Manage_Data()
+    format = test1.to_dict("list2", "taco", 5)
+    sav = test1.save(format, "list2", "taco", 5)
 
 if __name__ =="__main__":
     main()

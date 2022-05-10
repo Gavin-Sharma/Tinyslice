@@ -33,13 +33,13 @@ def grocery():
 
         #process to save data
         formated_data = manage_data.to_dict(list_name_data, item_name_data, item_price_data) #formats data
-        save_data = manage_data.save(formated_data)
+        save_data = manage_data.save(formated_data, list_name_data, item_name_data, item_price_data)
 
         #process to show data
         json_data = manage_data.read()
 
         
-        return render_template("grocery.html", data = json_data)
+        return render_template("grocery.html", grocery_lists = json_data)
     return render_template("grocery.html")
 
 @app.route("/contact")

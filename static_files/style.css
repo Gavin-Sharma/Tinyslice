@@ -19,8 +19,8 @@ body {
 
 /* CSS for the header portion */
 .header-container {
-    width: 90%;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0 0;
 }
 
 header {
@@ -87,6 +87,7 @@ header::after {
     font-family: Georgia, 'Times New Roman', Times, serif;
     padding-left: 10%;
 }
+
 /* CSS for list title animation */
 .list-title {
     font-size: clamp(1rem, 3vw + 1rem, 3rem);
@@ -276,7 +277,7 @@ header::after {
     background-color: var(--bg-color);
     display: flex;
     justify-content: flex-end;
-    padding-right: 20px;
+    padding-right: 15%;
     animation: fadeInUp 4s ease forwards;
 }
 
@@ -286,7 +287,7 @@ header::after {
     background-color: white;
     border-style: solid;
     border-color: black;
-    width: 50%;
+    width: max-content;
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -302,7 +303,6 @@ header::after {
 .total-cost {
     font-family: monospace;
     font-size: 3rem;
-
 }
 
 /* Contact us page */
@@ -365,8 +365,14 @@ footer {
     text-align: end;
 }
 
-@media (max-width: 927px) {
+@media (max-width: 516px) {
+    .welcome {
+        font-size: 2rem;
+    }
 
+    .total-cost {
+        font-size: 2rem;
+    }
 }
 
 

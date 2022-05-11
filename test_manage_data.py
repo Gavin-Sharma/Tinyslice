@@ -41,6 +41,6 @@ def test_delete_list(mock_file):
 def test_delete_list(mock_file):
     json_data = manage_data.delete_item("list 1", "apples")
     index = next((index for (index, d) in enumerate(json_data) if d["list_name"] == "list 1"), None)
-    grocery_list = json_data.index(index)
+    grocery_list = json_data[index]
     for groceries in grocery_list:
         assert groceries[0] != "apples"

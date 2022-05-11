@@ -73,7 +73,7 @@ def delete_list(name):
     """Deletes a grocery list based off the name of the grocery list
     given in the argument"""
     # opens data.json
-    with open("static_files/data.json", "w") as fp:
+    with open("static_files/data.json", "r") as fp:
         # load the data as a python object
         json_data = json.load(fp)
         # loop through the list
@@ -81,18 +81,19 @@ def delete_list(name):
             # if the name of the grocery list matches the name given as the function parameter, delete the grocery list
             if grocery_list["list_name"] == name:
                 json_data.remove(grocery_list)
-        # this would save the data to the file
-        # json.dump(json_data, fp)
 
-        #returns the data
-        return json_data
+    with open("static_files/data.json", "w") as fp:
+        # this would save the data to the file
+        json.dump(json_data, fp)
+    #returns the data
+    return json_data
 
 def delete_item(grocery_list, item):
     """Deletes grocery items from grocery list.
     The grocery_list arugment is from which grocery list to delete the item from.
     The item argument is what item to delete from the gorcery list."""
     # open data.json
-    with open("static_files/data.json") as fp:
+    with open("static_files/data.json", "r") as fp:
         # load the json as a python object
         json_data = json.load(fp)
         # find the index of the grocery list that matches the name of the grocery list
@@ -103,12 +104,14 @@ def delete_item(grocery_list, item):
             # if the grocery item matches the item argument, remove the grocery item from the groceries list
             if groceries[0] == item:
                 json_data[index]["grocery"].remove(groceries)
+
+    with open("static_files/data.json", "w") as fp:
                 
         # this will save the data
-        # json.dump(json_data, fp)
+        json.dump(json_data, fp)
 
-        # return the data
-        return json_data
+    # return the data
+    return json_data
 
 
 

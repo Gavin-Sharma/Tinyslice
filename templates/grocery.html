@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static_files/style.css">
+    <!-- <script defer src="/static_files/app.js"></script> -->
     <title>Document</title>
 </head>
 <body>
@@ -16,7 +17,7 @@
         </div>
     </header>
 
-    <form class="item-input" action="#" method="post">
+    <form class="item-input" action="/grocery#" method="post">
         <p>List Name (add/create):</p>
             <p><input type="text" required="required", name="listName" /></p>
         <p>Item Name:</p>
@@ -35,6 +36,10 @@
                     <li>{{ grocery[0] }}: ${{ grocery[1] }}</li>
                     {% endfor %}
                 </ul>
+                <form class="delete-button" action="/delete" method="post">
+                    
+                    <input id="delete-button" type="submit" value="Delete" name={{ i.list_name }}>
+                </form>
         {% endfor %}
     </ul>
 

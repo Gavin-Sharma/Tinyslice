@@ -1,8 +1,9 @@
+from unicodedata import name
 from flask import Flask, request, jsonify, render_template, redirect, url_for
 import json
 from flask_nav import Nav
 from flask_nav.elements import Navbar, Subgroup, View, Link, Text, Separator
-from manage_data import to_dict, read, save, save_total_cost
+from manage_data import to_dict, read, save, save_total_cost, delete_list
 
 # initialize the Flask application
 app = Flask(__name__, static_folder="static_files")
@@ -39,6 +40,11 @@ def grocery():
         
         return render_template("grocery.html", grocery_lists = json_data)
     return render_template("grocery.html")
+
+@app.route("/delete", methods = ["POST"])
+def delete():
+    json_data = delete_list(list(request.form.to_dict())[0])
+    return render_template("grocery.html", grocery_lists = json_data)
 
 @app.route("/contact")
 def contact():

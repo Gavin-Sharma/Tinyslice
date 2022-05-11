@@ -37,7 +37,23 @@ def save(data, list_name, item_name, item_price):
     with open("static_files/data.json", "w") as f:
         json.dump(json_data, f)
     
+def delete_list(name):
+    """Deletes a grocery list based off the name of the grocery list
+    given in the argument"""
+    # opens data.json
+    with open("static_files/data.json", "w") as fp:
+        # load the data as a python object
+        json_data = json.load(fp)
+        # loop through the list
+        for grocery_list in json_data:
+            # if the name of the grocery list matches the name given as the function parameter, delete the grocery list
+            if grocery_list["list_name"] == name:
+                json_data.remove(grocery_list)
+        # this would save the data to the file
+        # json.dump(json_data, fp)
 
+        #returns the data
+        return json_data
 
 
 def main():

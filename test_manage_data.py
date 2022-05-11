@@ -16,7 +16,21 @@ FAKE_DATA = """[
                 "4"
             ]
         ]
+    },
+    {
+        "list_name": "list 2",
+        "grocery": [
+            [
+                "bananas",
+                "7"
+            ],
+            [
+                "oranges",
+                "3"
+            ]
+        ]
     }
+        
 ]"""
 
 # opens the fake json as if it were a real file
@@ -36,6 +50,7 @@ def test_delete_list(mock_file):
     json_data = manage_data.delete_list("list 1")
     for grocery_list in json_data:
         assert grocery_list["list_name"] != "list 1"
+    assert json_data[0]["list_name"] == "list 2"
 
 @patch("builtins.open", new_callable=mock_open, read_data = FAKE_DATA)
 def test_delete_item(mock_file):

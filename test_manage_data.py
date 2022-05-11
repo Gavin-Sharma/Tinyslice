@@ -1,5 +1,6 @@
 from unittest.mock import mock_open, patch
 import manage_data
+import json
 
 #fake json, his is a json string
 FAKE_DATA = """[
@@ -29,3 +30,17 @@ def test_read(mock_file):
     assert json_data[0]["grocery"][0][1] == "5"
     assert json_data[0]["grocery"][1][0] == "pears"
     assert json_data[0]["grocery"][1][1] == "4"
+
+@patch("builtins.open", new_callable=mock_open, read_data = FAKE_DATA)
+def test_delete_list(mock_file):
+    json_data = manage_data.delete_list("list 1")
+    for grocery_list in json_data:
+        assert grocery_list["list_name"] != "list 1"
+
+@patch("builtins.open", new_callable=mock_open, read_data = FAKE_DATA)
+def test_delete_item(mock_file):
+    json_data = manage_data.delete_item("list 1", "apples")
+    index = next((index for (index, d) in enumerate(json_data) if d["list_name"] == "list 1"), None)
+    grocery_list = json_data[index]
+    for groceries in grocery_list:
+        assert groceries[0] != "apples"

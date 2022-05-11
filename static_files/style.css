@@ -1,7 +1,8 @@
 /* Color Palette */
 :root {
+    --paper-color: #FFF;
     --bg-color: hsl(49 37% 94%);
-    --typewriterspeed: 6s;
+    --typewriterspeed: 1.5s;
     --typewritercharacters: 16;
 }
 
@@ -80,9 +81,15 @@ header::after {
     font-weight: 100;
 }
 
-/* CSS for the main area */
+/* CSS for the main area of index.html*/
+.welcome {
+    font-size: 4rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-left: 10%;
+}
+/* CSS for list title animation */
 .list-title {
-    font-size: clamp(1rem, 3vw + 1rem, 4rem);
+    font-size: clamp(1rem, 3vw + 1rem, 3rem);
     position: relative;
     font-family: monospace;
     width: max-content;
@@ -98,7 +105,7 @@ header::after {
 }
 
 .list-title::before {
-    background: var(--bg-color);
+    background: var(--paper-color);
     animation: typewriter var(--typewriterspeed)
         steps(var(--typewritercharacters)) 1s forwards;
 }
@@ -111,7 +118,146 @@ header::after {
         blink 750ms steps(var(--typewritercharacters)) infinite; 
 }
 
+/* CSS for each item in the list */
+.item-one {
+    font-size: clamp(1rem, 3vw + 1rem, 3rem);
+    position: relative;
+    font-family: monospace;
+    width: max-content;
+}
+
+.item-one::before, .item-one::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.item-one::before {
+    background: var(--paper-color);
+    animation: typewriter var(--typewriterspeed)
+        steps(var(--typewritercharacters)) 1s forwards;
+    animation-delay: 2s;
+}
+
+.item-one::after {
+    width: 0.125em;
+    background: black;
+    animation: typewriter var(--typewriterspeed)
+            steps(var(--typewritercharacters)) 1s forwards,
+        blink 450ms steps(var(--typewritercharacters)) infinite; 
+    animation-delay: 2s;
+}
+
+.item-two {
+    font-size: clamp(1rem, 3vw + 1rem, 3rem);
+    position: relative;
+    font-family: monospace;
+    width: max-content;
+}
+
+.item-two::before, .item-two::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.item-two::before {
+    background: var(--paper-color);
+    animation: typewriter var(--typewriterspeed)
+        steps(var(--typewritercharacters)) 1s forwards;
+    animation-delay: 4s;
+}
+
+.item-two::after {
+    width: 0.125em;
+    background: black;
+    animation: typewriter var(--typewriterspeed)
+            steps(var(--typewritercharacters)) 1s forwards,
+        blink 450ms steps(var(--typewritercharacters)) infinite; 
+    animation-delay: 4s;
+}
+
+.item-three {
+    font-size: clamp(1rem, 3vw + 1rem, 3rem);
+    position: relative;
+    font-family: monospace;
+    width: max-content;
+}
+
+.item-three::before, .item-three::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.item-three::before {
+    background: var(--paper-color);
+    animation: typewriter var(--typewriterspeed)
+        steps(var(--typewritercharacters)) 1s forwards;
+    animation-delay: 6s;
+}
+
+.item-three::after {
+    width: 0.125em;
+    background: black;
+    animation: typewriter var(--typewriterspeed)
+            steps(var(--typewritercharacters)) 1s forwards,
+        blink 450ms steps(var(--typewritercharacters)) infinite; 
+    animation-delay: 6s;
+}
+
+.item-four {
+    font-size: clamp(1rem, 3vw + 1rem, 3rem);
+    position: relative;
+    font-family: monospace;
+    width: max-content;
+}
+
+.item-four::before, .item-four::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.item-four::before {
+    background: var(--paper-color);
+    animation: lasttypewriter var(--typewriterspeed)
+        steps(var(--typewritercharacters)) 1s forwards;
+    animation-delay: 8s;
+}
+
+.item-four::after {
+    width: 0.125em;
+    background: black;
+    animation: lasttypewriter var(--typewriterspeed)
+            steps(var(--typewritercharacters)) 1s forwards,
+        blink 650ms steps(var(--typewritercharacters)) infinite; 
+    animation-delay: 8s;
+}
+
 @keyframes typewriter {
+    to {
+        left: 100%;
+    }
+    100% {
+        overflow: hidden;
+        visibility: hidden;
+    }
+}
+
+@keyframes lasttypewriter {
     to {
         left: 100%;
     }
@@ -123,6 +269,41 @@ header::after {
     }
 }
 
+/* CSS for paper fading in animation */
+.paper-container {
+    opacity: 0;
+    transform: translateY(3rem);
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+    animation: fadeInUp 4s ease forwards;
+}
+
+.paper {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    width: 50%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* CSS for displaying total cost at the bottom */
+.total-cost {
+    font-family: monospace;
+    font-size: 3rem;
+
+}
 
 /* Contact us page */
 .main-screen {
@@ -185,30 +366,7 @@ footer {
 }
 
 @media (max-width: 927px) {
-    .side-nav {
-        flex-grow: 0.2;
-    }
-    .side-nav-header {
-        font-size: 20px;
-    }
 
-    #second-header h2 {
-        font-size: 15px;
-    }
-
-    #next-button {
-        display: flex;
-        justify-content: center;
-    }
-
-    #created-list {
-        padding-left: 0px;
-    }
-
-    #display-cost {
-        position: absolute;
-        bottom: 50px;
-    }
 }
 
 

@@ -29,7 +29,7 @@
     <!--Below will loop over the json data and show it in a list format-->
     <ul> 
         {% for i in grocery_lists %}
-            <li>{{ i.list_name }}</li>
+            <li>{{ i.list_name }} | Total Cost: {{ i.total_cost }}</li>
                 <ul>
                     {% for grocery in i.grocery %}
                     <li>{{ grocery[0] }}: ${{ grocery[1] }}</li>

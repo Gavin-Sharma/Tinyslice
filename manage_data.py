@@ -6,7 +6,8 @@ def to_dict(list_name, item_name, item_price):
     """ This funtion just formats the data before it should be written into the json file """
     return  {
             "list_name": list_name,
-            "grocery":[[item_name, item_price]]
+            "total_cost": 0,
+            "grocery":[[item_name, int(item_price)]]
             }
 
 def read():
@@ -15,6 +16,38 @@ def read():
         json_data = json.load(f)
         return json_data
     
+def get_total_cost(list_name):
+    """Takes a list name you want to get the total cost for and returns the total cost"""
+    #read the json file and store in variable
+    json_data = read()
+
+    for data in json_data:
+        if data["list_name"] == list_name:
+
+            #keep track of the total cost
+            total_cost = 0
+
+            for item_cost in data["grocery"]:
+                total_cost += item_cost[1] #adds item cost to total_cost
+            
+            #return the total cost for the list
+            return total_cost
+
+def save_total_cost(list_name):
+    """saves the total cost of a grocery list using the get_total_cost funtion"""
+    json_data = read() #read data
+    total_cost = get_total_cost(list_name) #get total cost for a single list
+
+    #Check if list name match and change the total_cost value in the json_data
+    for data in json_data:
+        if data["list_name"] == list_name:
+            data["total_cost"] = total_cost #update the total cost to json_data
+    
+    #Writes to the json file
+    with open("static_files/data.json", "w") as f:
+        json.dump(json_data, f)
+
+
 def save(data, list_name, item_name, item_price):
     #Reads json file
     json_data = read()
@@ -25,7 +58,7 @@ def save(data, list_name, item_name, item_price):
     #Appends data to existing list
     for i in json_data:
         if i["list_name"] == list_name:
-            i["grocery"].append([item_name, item_price])
+            i["grocery"].append([item_name, int(item_price)])
         
         all_list_names.append(i["list_name"])
         
@@ -78,7 +111,15 @@ def delete_item(grocery_list, item):
         # return the data
         return json_data
 
+
+
+
+            
+
+
 def main():
-    pass
+    x = get_total_cost("list2")
+    print(x)
+
 if __name__ =="__main__":
     main()

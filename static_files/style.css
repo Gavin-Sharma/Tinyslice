@@ -1,13 +1,22 @@
+/* Color Palette */
+:root {
+    --bg-color: hsl(49 37% 94%);
+    --typewriterspeed: 6s;
+    --typewritercharacters: 16;
+}
+
 html, body, section {
     height: 100%;
 }
 
 body {
     margin: 0;
-    background: #CAE8FC;
+    min-height: 100vh;
+    background-color: var(--bg-color);
     font-family: sans-serif;
 }
 
+/* CSS for the header portion */
 .header-container {
     width: 90%;
     margin: 0 auto;
@@ -72,94 +81,48 @@ header::after {
 }
 
 /* CSS for the main area */
-.main-area {
-    display: flex;
+.list-title {
+    font-size: clamp(1rem, 3vw + 1rem, 4rem);
+    position: relative;
+    font-family: monospace;
+    width: max-content;
 }
 
-h2 {
-    padding-top: 40px;
-    padding-left: 20px;
-}
-
-.side-nav {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 0.2;
-    background-color: #FFF0F8;
-}
-
-.side-nav-header {
-    font-size: 25px;
-    text-align: center;
-    margin-bottom: 0;
-}
-
-#created-lists {
-    margin: none;
-    padding: none;
-
-}
-
-.newlist-button {
-    position: fixed;
-    bottom: 100px;
-    right: 50px;
-}
-
-/* Code to enter the list title */
-#list-title {
-    display: flex;
-    padding-left: 40px;
-    padding-top: 60px;
-}  
-
-#next-button {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 5px;
-}
-
-/* Setting up grocery add items */
-#add-grocery-list {
-    display: flex;
-    flex-grow: 0.5;
-    justify-content: space-around;
-}
-
-#no-style {
-    list-style: none;
-    padding-left: 0;
-}
-
-#no-style li {
-    padding-top: 3.5px;
-}
-
-#button-group {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Viewing the list of groceries */
-#viewing-list {
-    display: flex;
-    justify-content: space-around;
-    flex-grow: 0.5;
-    height: max-content;
-    align-items: flex-end;
-}
-
-#view-items, #view-prices {
-    list-style: none;
-    padding-left: 0;
-}
-
-footer {
-    position: fixed;
+.list-title::before, .list-title::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
     bottom: 0;
-    width: 100%;
-    text-align: center;
+    left: 0;
 }
+
+.list-title::before {
+    background: var(--bg-color);
+    animation: typewriter var(--typewriterspeed)
+        steps(var(--typewritercharacters)) 1s forwards;
+}
+
+.list-title::after {
+    width: 0.125em;
+    background: black;
+    animation: typewriter var(--typewriterspeed)
+            steps(var(--typewritercharacters)) 1s forwards,
+        blink 750ms steps(var(--typewritercharacters)) infinite; 
+}
+
+@keyframes typewriter {
+    to {
+        left: 100%;
+    }
+}
+
+@keyframes blink {
+    to {
+        background: transparent;
+    }
+}
+
 
 /* Contact us page */
 .main-screen {
@@ -200,6 +163,25 @@ th {
 .hours li {
     padding-top: 10px;
     padding-bottom: 5px;
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    bottom: 5px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* CSS for Add Grocery Page */
+.item-input {
+    padding-left: 20px;
+    width: max-content;
+}
+
+.submit-button {
+    text-align: end;
 }
 
 @media (max-width: 927px) {

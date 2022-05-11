@@ -38,7 +38,7 @@ def test_delete_list(mock_file):
         assert grocery_list["list_name"] != "list 1"
 
 @patch("builtins.open", new_callable=mock_open, read_data = FAKE_DATA)
-def test_delete_list(mock_file):
+def test_delete_item(mock_file):
     json_data = manage_data.delete_item("list 1", "apples")
     index = next((index for (index, d) in enumerate(json_data) if d["list_name"] == "list 1"), None)
     grocery_list = json_data[index]

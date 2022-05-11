@@ -47,7 +47,6 @@ def save_total_cost(list_name):
     with open("static_files/data.json", "w") as f:
         json.dump(json_data, f)
 
-
 def save(data, list_name, item_name, item_price):
     #Reads json file
     json_data = read()
@@ -118,8 +117,7 @@ def delete_item(grocery_list, item):
 
 
 def main():
-    x = get_total_cost("list2")
-    print(x)
+    pass
 
 if __name__ =="__main__":
     main()

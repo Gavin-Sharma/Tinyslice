@@ -1,44 +1,77 @@
+from unicodedata import name
+from flask import Flask, request, jsonify, render_template, redirect, url_for
 import json
-from flask import Flask, request, jsonify, render_template
 from flask_nav import Nav
 from flask_nav.elements import Navbar, Subgroup, View, Link, Text, Separator
+from manage_data import to_dict, read, save, save_total_cost, delete_list, delete_item
 
-#initialize the Flask application
+# initialize the Flask application
 app = Flask(__name__, static_folder="static_files")
 nav = Nav(app)
 
-#Control Navigation Bar (https://www.youtube.com/watch?v=EJwGV1gjVkY)
+#Control Navigation Bar
 nav.register_element('my_navbar', Navbar(
     'thenav',
     View('Home', 'homepage'),
-    View('Contact us', 'contact')))
+    View('Contact us', 'contact'),
+    View('Add Grocery', 'grocery')))
 
-# when the app receives a request at the "/" endpoint, it will activate this function
+
 @app.route("/")
 def homepage():
-    """Renders the main page"""
-    # renders the index.html file and sends the 200 OK HTTP status code
-    return render_template("index.html"), 200
+    return render_template("index.html")
+
+@app.route("/grocery", methods = ["POST", "GET"])
+def grocery():
+    """This page allows users to only add things to a grocery list"""
+    if request.method == "POST":
+        list_name_data = request.form["listName"] #get list name from form
+        item_name_data = request.form["itemName"] #get item name from form
+        item_price_data = request.form["itemPrice"] #get item price from form
+
+        #process to save data
+        formated_data = to_dict(list_name_data, item_name_data, item_price_data) #formats data
+        save_data = save(formated_data, list_name_data, item_name_data, item_price_data) #saves data by creating or appending to a list
+        save_total_list_cost = save_total_cost(list_name_data) #saves total cost of each list
+
+        #process to show data
+        json_data = read()
+
+        
+        return render_template("grocery.html", grocery_lists = json_data)
+    return render_template("grocery.html")
+
+@app.route("/delete", methods = ["POST"])
+def delete():
+    json_data = delete_list(list(request.form.to_dict())[0])
+    return render_template("grocery.html", grocery_lists = json_data)
+
+@app.route("/remove", methods = ["POST"])
+def remove():
+
+    data_retrieved = []
+    # both the list item and list name are returned as a string in the first index of the list
+    # the list is turned into a string and the split method is used to separate the item and list name
+    form_data = str(list(request.form.to_dict())[0])
+
+    # since the retireved data is in a string form, I am removing all the characters that are not part of the grocery name
+    # after removing the characters, I converted it to a list and grabbed the grocery list name and the grocery name
+    form_data_one = form_data.replace(",", "")
+    form_data_two = form_data_one.replace("[", "")
+    form_data_three = form_data_two.replace("]", "")
+    form_data_four = form_data_three.replace("'", "")
+    form_data_list = form_data_four.split(' ')
+    list_item = form_data_list[0]
+    list_name = form_data_list[2]
+
+    save_total_cost(list_name)
+    json_data = delete_item(list_name, list_item)
+    return render_template("grocery.html", grocery_lists = json_data)
 
 @app.route("/contact")
 def contact():
     """Renders the contact page"""
-    # renders the contact.html file and sends the 200 OK HTTP status code
-    return render_template("contact.html"), 200
-
-# this route only works with GET requests
-# later we will copy this route but with the POST method to add items to the list
-# we can also use PATCH request to edit the list
-@app.route("/api/grocery_list", methods = ["GET"])
-def return_grocery_list():
-    """Returns a json of the grocery objects stored in the server"""
-    # opens the grocery list json file in a read-only state
-    with open("grocery_list.json", "r") as fp:
-        data = json.load(fp)
-    # from jsonify intellisense: Serialize data to JSON and wrap it in a ~flask.Response with the application/json mimetype
-    return jsonify(data), 200
-
+    return render_template("contact.html")
 
 if __name__ == "__main__":
-    # debug must be set to false in production
     app.run(debug=True)

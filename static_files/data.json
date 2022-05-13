@@ -1,1 +1,1 @@
-[]
+[{"list_name": "list1", "total_cost": 10.0, "grocery": []}, {"list_name": "list2", "total_cost": 20.0, "grocery": [["orange", 20.0]]}]

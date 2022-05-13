@@ -48,6 +48,9 @@
       <ul>
         {% for grocery in i.grocery %}
         <li>{{ grocery[0] }}: ${{ grocery[1] }}</li>
+        <form class="remove-button" action="/remove" method="post">
+          <input id="remove-button" type="submit" value="Remove" name="{{ i.grocery[0] }}, {{ i.list_name }}"/>
+        </form>
         {% endfor %}
       </ul>
       <form class="delete-button" action="/delete" method="post">
@@ -55,8 +58,7 @@
           id="delete-button"
           type="submit"
           value="Delete"
-          name="{{
-        i.list_name }}"
+          name="{{ i.list_name }}"
         />
       </form>
       {% endfor %}

@@ -64,6 +64,7 @@ def remove():
     list_item = form_data_list[0]
     list_name = form_data_list[2]
 
+    save_total_cost(list_name)
     json_data = delete_item(list_name, list_item)
     return render_template("grocery.html", grocery_lists = json_data)
 

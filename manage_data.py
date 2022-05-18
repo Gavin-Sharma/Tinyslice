@@ -92,12 +92,6 @@ def delete_item(grocery_list, item):
     """Deletes grocery items from grocery list.
     The grocery_list arugment is from which grocery list to delete the item from.
     The item argument is what item to delete from the gorcery list."""
-    # open data.json
-    
-    with open("static_files/text.txt", "w") as inside:
-        inside.write(grocery_list)
-        inside.write(item)
-        inside.write("\nThis is working")
 
     with open("static_files/data.json", "r") as fp:
         # load the json as a python object

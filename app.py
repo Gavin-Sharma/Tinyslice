@@ -68,6 +68,7 @@ def remove():
     json_data = delete_item(list_name, list_item)
     return render_template("grocery.html", grocery_lists = json_data)
 
+
 @app.route("/contact")
 def contact():
     """Renders the contact page"""

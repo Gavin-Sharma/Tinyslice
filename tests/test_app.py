@@ -1,9 +1,9 @@
 import pytest
-import app
+from app import app
 
 @pytest.fixture
 def client():
-    flask_app = app.app
+    flask_app = app
     return flask_app.test_client()
 
 def test_end_point(client):

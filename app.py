@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify, render_template, redirect, url_for
 import json
 from flask_nav import Nav
 from flask_nav.elements import Navbar, Subgroup, View, Link, Text, Separator
-from manage_data import to_dict, read, save, save_total_cost, delete_list, delete_item
+from manage_data import to_dict, read, save, save_total_cost, delete_list, delete_item, total_list_costs, total_number_items, all_budgets_and_list_names, get_number_of_lists, calculate_mean, calculate_standard_deviation
 
 # initialize the Flask application
 app = Flask(__name__, static_folder="static_files")
@@ -14,7 +14,8 @@ nav.register_element('my_navbar', Navbar(
     'thenav',
     View('Home', 'homepage'),
     View('Contact us', 'contact'),
-    View('Add Grocery', 'grocery')))
+    View('Add Grocery', 'grocery'),
+    View('Overview', 'overview')))
 
 
 @app.route("/")
@@ -72,6 +73,19 @@ def remove():
 def contact():
     """Renders the contact page"""
     return render_template("contact.html")
+
+@app.route("/overview")
+def overview():
+    """Renders the overview page"""
+
+    all_list_costs = total_list_costs() #gets all the costs for your grocery items in everylist
+    total_items = total_number_items() #gets the total number of items you have in all your grocery lists
+    budget_and_list_name = all_budgets_and_list_names() #gets all the list names and budgets from each grocery list in a list format
+    num_lists = get_number_of_lists() #gets the number of lists you have
+    mean = calculate_mean() #calculates the mean of all item costs
+    standard_deviation = calculate_standard_deviation() #calculates sd of all item costs
+
+    return render_template("overview.html", total_cost=all_list_costs, total_items = total_items, budget_and_list_name = budget_and_list_name, num_of_lists = num_lists, mean = mean, sd = standard_deviation)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -121,6 +121,18 @@ def get_all_list_names():
     list_names = [data["list_name"] for data in json_data] #List Comprehension (appends list names into the list->[])
     return list_names
 
+def list_name_and_total_cost():
+    """reutrns a list of all the grocery list names and item costs"""
+    list_names = get_all_list_names()
+
+    list_name_and_cost = {'List Name' : 'Total Cost'} #notice i have a key and value dont remove it. Google charts does not like when it is removed
+    for list_name in list_names:
+        total_list_cost = get_total_cost(list_name)
+        list_name_and_cost[list_name] = total_list_cost
+        
+
+    return list_name_and_cost
+
 def get_number_of_lists():
     """
     gets all the list names using the get_all_list_names funtion and returns the length
@@ -172,18 +184,25 @@ def all_item_costs():
     return item_costs
     
 def calculate_mean():
+    """gets the stats mean/avg of all the item costs in the grocery lists"""
     data = all_item_costs()
-    return statistics.mean(data)
+    if len(data) == 0: 
+        data = [0]
+
+    return "{:.5f}".format(statistics.mean(data))
 
 def calculate_standard_deviation():
+    """gets the stats sd of all the item costs in the grocery lists"""
     data = all_item_costs()
-    return statistics.stdev(data)
+    if len(data) == 0 or len(data) == 1:
+        data = [0,0]
+
+    return "{:.5f}".format(statistics.stdev(data))
 
             
 
 
 def main():
-    print(calculate_standard_deviation())
-
+    pass
 if __name__ =="__main__":
     main()

@@ -199,7 +199,17 @@ def calculate_standard_deviation():
 
     return "{:.5f}".format(statistics.stdev(data))
 
-            
+def save_budget(budget: float, list_name:str):
+    with open("static_files/data.json") as fp:
+        json_data = json.load(fp)
+
+    for grocery_list in json_data:
+        if grocery_list["list_name"] == list_name:
+            grocery_list.update({"budget": budget})
+            break
+    
+    with open("static_files/data.json", "w") as fp:
+        json.dump(json_data, fp)    
 
 
 def main():

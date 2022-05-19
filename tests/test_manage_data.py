@@ -94,10 +94,11 @@ def test_save(mock_file):
     mock_file.assert_called_once()
 
 
-def test_do_dict():
+def test_to_dict():
     fake_list = manage_data.to_dict("List 1", "Apple", 0.99)
     assert fake_list == {"list_name": "List 1",
                          "total_cost": 0,
+                         "budget": 0,
                          "grocery": [["Apple", 0.99]]
                          }
 
@@ -117,3 +118,32 @@ def test_save_budget():
     manage_data.save_budget(420.69, "list 2")
     json_data = manage_data.read()
     assert json_data[1]["budget"] == 420.69
+
+def test_get_all_list_names():
+    pass
+
+def test_list_name_and_total_cost():
+    pass
+
+def test_get_number_of_lists():
+    pass
+
+def test_total_list_costs():
+    pass
+
+def test_total_number_items():
+    pass
+
+def test_all_budgets_and_list_names():
+    pass
+
+def test_all_item_costs():
+    pass
+
+def test_calculate_mean():
+    pass
+
+def test_calculate_standard_deviation():
+    pass
+
+

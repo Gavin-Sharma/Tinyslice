@@ -191,21 +191,17 @@ def calculate_mean():
 
     return "{:.5f}".format(statistics.mean(data))
 
-def calculate_standard_deviation():
-    """gets the stats sd of all the item costs in the grocery lists"""
-    data = all_item_costs()
-    if len(data) == 0 or len(data) == 1:
-        data = [0,0]
-
-    return "{:.5f}".format(statistics.stdev(data))
 
 def save_budget(budget: float, list_name:str):
+    if budget == "":
+        budget = 0.0
+        
     with open("static_files/data.json") as fp:
         json_data = json.load(fp)
 
     for grocery_list in json_data:
         if grocery_list["list_name"] == list_name:
-            grocery_list.update({"budget": budget})
+            grocery_list.update({"budget": float(budget)})
             break
     
     with open("static_files/data.json", "w") as fp:

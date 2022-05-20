@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -58,10 +57,74 @@
         {% endfor %}
 
       </div>
-    </article>
-  </section>
+    </header>
 
+    <section class="main-area">
+      <div class="list-input">
+        <form class="item-input" action="/grocery#" method="post">
+          <p>List Name (add/create):</p>
+          <p><input type="text" required="required" , name="listName" /></p>
+          <p>Item Name:</p>
+          <p><input type="text" required="required" , name="itemName" /></p>
+          <p>Price:</p>
+          <p>
+            <input
+              type="number"
+              step="any"
+              min="0"
+              required="required"
+              name="itemPrice"
+            />
+          </p>
+          <!-- Deliverable 3 -->
+          <p>Budget (Optional):</p>
+          <p>
+            <input
+              type="number"
+              step="any"
+              min="0"
+              name="budget"
+            />
+          </p>
+          <p class="submit-button">
+            <input id="submit-button" type="submit" , value="submit" />
+          </p>
+          <!--Submit-->
+        </form>
+      </div>
 
-</body>
-
+      <!--Below will loop over the json data and show it in a list format-->
+      <article class="viewing-list">
+        <div class="grocery-list">
+          {% for i in grocery_lists %}
+          <article class="each-grocery-list">
+            <h1>{{ i.list_name }} | Total Cost: ${{ i.total_cost }}</h1>
+            <h1>Budget: ${{ i.budget }}</h1>
+            <ul>
+              {% for grocery in i.grocery %}
+              <li>{{ grocery[0] }}: ${{ grocery[1] }}</li>
+              <form class="remove-button" action="/remove" method="post">
+                <input
+                  id="remove-button"
+                  type="submit"
+                  value="Remove"
+                  name="{{ i.grocery[0] }}, {{ i.list_name }}"
+                />
+              </form>
+              {% endfor %}
+            </ul>
+            <form class="delete-button" action="/delete" method="post">
+              <input
+                id="delete-button"
+                type="submit"
+                value="Delete"
+                name="{{ i.list_name }}"
+              />
+            </form>
+          </article>
+          {% endfor %}
+        </div>
+      </article>
+    </section>
+  </body>
 </html>

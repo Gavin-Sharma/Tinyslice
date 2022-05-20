@@ -143,7 +143,5 @@ def test_all_item_costs():
 def test_calculate_mean():
     pass
 
-def test_calculate_standard_deviation():
-    pass
 
 

@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify, render_template, redirect, url_for
 import json
 from flask_nav import Nav
 from flask_nav.elements import Navbar, Subgroup, View, Link, Text, Separator
-from manage_data import to_dict, read, save, save_total_cost, delete_list, delete_item, total_list_costs, total_number_items, all_budgets_and_list_names, get_number_of_lists, calculate_mean, calculate_standard_deviation, list_name_and_total_cost
+from manage_data import to_dict, read, save, save_total_cost, delete_list, delete_item, total_list_costs, total_number_items, all_budgets_and_list_names, get_number_of_lists, calculate_mean, list_name_and_total_cost, save_budget
 
 # initialize the Flask application
 app = Flask(__name__, static_folder="static_files")
@@ -29,11 +29,13 @@ def grocery():
         list_name_data = request.form["listName"] #get list name from form
         item_name_data = request.form["itemName"] #get item name from form
         item_price_data = request.form["itemPrice"] #get item price from form
-
+        budget_data = request.form["budget"]
+        
         #process to save data
         formated_data = to_dict(list_name_data, item_name_data, item_price_data) #formats data
         save_data = save(formated_data, list_name_data, item_name_data, item_price_data) #saves data by creating or appending to a list
         save_total_list_cost = save_total_cost(list_name_data) #saves total cost of each list
+        save_budget_data = save_budget(budget_data, list_name_data)
 
         #process to show data
         json_data = read()
@@ -84,11 +86,10 @@ def overview():
     budget_and_list_name = all_budgets_and_list_names() #gets all the list names and budgets from each grocery list in a list format
     num_lists = get_number_of_lists() #gets the number of lists you have
     mean = calculate_mean() #calculates the mean of all item costs
-    standard_deviation = calculate_standard_deviation() #calculates sd of all item costs
     pie_chart_data = list_name_and_total_cost() #This is the data that will be passed into the javascript to create the pie chart. The data is formated before passed
 	
 
-    return render_template("overview.html", data = pie_chart_data, total_cost=all_list_costs, total_items = total_items, budget_and_list_name = budget_and_list_name, num_of_lists = num_lists, mean = mean, sd = standard_deviation)
+    return render_template("overview.html", data = pie_chart_data, total_cost=all_list_costs, total_items = total_items, budget_and_list_name = budget_and_list_name, num_of_lists = num_lists, mean = mean)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -51,12 +51,15 @@ header::after {
     margin: 0;
     padding: 0;
     list-style: none;
+    height: 100%;
 }
 
 .navbar ul li {
     display: inline-block;
     margin-left: 20px;
     padding-top: 10px;
+    padding-right: 10px;
+    height: 100%;
 }
 
 .navbar ul li a {
@@ -480,6 +483,33 @@ header::after {
     transform: translateY(0);
 }
 
+/* CSS for Overview Page */
+.overview-title {
+    padding-left: 10%;
+    font-size: 50px;
+}
+
+.overview-area {
+    display: flex;
+    justify-content: space-around;
+}
+
+.info-area {
+    background-color: white;
+    border-style: solid;
+    border-radius: 15px;
+    height: fit-content;
+    padding: 10px;
+}
+
+#piechart_3d {
+    border-style: solid;
+    /* border-radius: 10px; */
+    height: 50%;
+    width: 50%;
+
+}
+
 /* Contact us page */
 .main-screen {
     display: flex;
@@ -591,9 +621,8 @@ footer {
 }
 
 @media (max-width: 601px) {
-    img {
-        width: 90px;
-        height: 37px;
+    .company-logo {
+        display: none;
     }
 
     .main-area {

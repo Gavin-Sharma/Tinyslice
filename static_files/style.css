@@ -26,7 +26,9 @@ body {
 }
 
 header {
-    background: #FFFF;
+    background: #2E4057;
+    height: 5%;
+    text-align: center;
 }
 
 header::after {
@@ -44,7 +46,8 @@ header::after {
 }
 
 .navbar {
-    float: right;
+    float: center;
+    padding-right: 5px;
 }
 
 .navbar ul {
@@ -58,12 +61,11 @@ header::after {
     display: inline-block;
     margin-left: 20px;
     padding-top: 10px;
-    padding-right: 10px;
     height: 100%;
 }
 
 .navbar ul li a {
-    color: black;
+    color: white;
     text-decoration: none;
     font-weight: 100;
 }
@@ -502,11 +504,10 @@ header::after {
     padding: 10px;
 }
 
-#piechart_3d {
+.piechart-display {
     border-style: solid;
-    /* border-radius: 10px; */
-    height: 50%;
-    width: 50%;
+    width: fit-content;
+    height: fit-content;
 
 }
 
@@ -580,7 +581,6 @@ footer {
 
 /* CSS for mobile devices */
 @media (max-width: 766px) {
-
     /* contact us page */
     .main-screen {
         display: flex;
@@ -655,5 +655,28 @@ footer {
         align-items: center;
         margin: 5px;
         box-shadow: -5px 5px;
+    }
+}
+
+@media (max-width: 1115px) {
+    .overview-title {
+        margin: 10px;
+        font-size: 40px;
+    }
+
+    .overview-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-area {
+        width: fit-content;
+        margin-bottom: 10px;
+    }
+
+    .piechart-display {
+        width: 300px;
+        align-content: center;
     }
 }

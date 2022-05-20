@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify, render_template, redirect, url_for
 import json
 from flask_nav import Nav
 from flask_nav.elements import Navbar, Subgroup, View, Link, Text, Separator
-from manage_data import to_dict, read, save, save_total_cost, delete_list, delete_item, total_list_costs, total_number_items, all_budgets_and_list_names, get_number_of_lists, calculate_mean, calculate_standard_deviation, list_name_and_total_cost
+from manage_data import to_dict, read, save, save_total_cost, delete_list, delete_item, total_list_costs, total_number_items, all_budgets_and_list_names, get_number_of_lists, calculate_mean, calculate_standard_deviation, list_name_and_total_cost, save_budget
 
 # initialize the Flask application
 app = Flask(__name__, static_folder="static_files")
@@ -29,11 +29,13 @@ def grocery():
         list_name_data = request.form["listName"] #get list name from form
         item_name_data = request.form["itemName"] #get item name from form
         item_price_data = request.form["itemPrice"] #get item price from form
-
+        budget_data = request.form["budget"]
+        
         #process to save data
         formated_data = to_dict(list_name_data, item_name_data, item_price_data) #formats data
         save_data = save(formated_data, list_name_data, item_name_data, item_price_data) #saves data by creating or appending to a list
         save_total_list_cost = save_total_cost(list_name_data) #saves total cost of each list
+        save_budget_data = save_budget(budget_data, list_name_data)
 
         #process to show data
         json_data = read()

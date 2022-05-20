@@ -49,24 +49,32 @@ def test_read(mock_file):
     assert json_data[0]["grocery"][1][0] == "pears"
     assert json_data[0]["grocery"][1][1] == "4"
 
-
-@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
-def test_delete_list(mock_file):
+def test_delete_list():
+    # write the test data to the file
+    with open("static_files/data.json", "w") as fp:
+        data = json.loads(FAKE_DATA)
+        json.dump(data, fp)
     # deletes the grocery list with the name "list 1"
-    # the corrected data is returned
-    json_data = manage_data.delete_list("list 1")
+    manage_data.delete_list("list 1")
+    # retrieve the data
+    json_data = manage_data.read()
+    
     # verifies that there is no list called "list 1"
     for grocery_list in json_data:
         assert grocery_list["list_name"] != "list 1"
     # verifies if "list 2" is not deleted
     assert json_data[0]["list_name"] == "list 2"
 
-
-@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
-def test_delete_item(mock_file):
+def test_delete_item():
+    # write the test data to the file
+    with open("static_files/data.json", "w") as fp:
+        data = json.loads(FAKE_DATA)
+        json.dump(data, fp)
     # deletes the "apples" item from "list 1"
-    # the corrected data is returned
-    json_data = manage_data.delete_item("list 1", "apples")
+    manage_data.delete_item("list 1", "apples")
+    # retrieve the data
+    json_data = manage_data.read()
+    
     # obtains the index for the list called "list 1"
     # in our case index is 0
     index = next((index for (index, d) in enumerate(
@@ -86,10 +94,11 @@ def test_save(mock_file):
     mock_file.assert_called_once()
 
 
-def test_do_dict():
+def test_to_dict():
     fake_list = manage_data.to_dict("List 1", "Apple", 0.99)
     assert fake_list == {"list_name": "List 1",
                          "total_cost": 0,
+                         "budget": 0,
                          "grocery": [["Apple", 0.99]]
                          }
 
@@ -100,3 +109,39 @@ def test_get_total_cost():
 
 def test_save_total_cost():
     pass
+
+def test_save_budget():
+    # write the test data to the file
+    with open("static_files/data.json", "w") as fp:
+        data = json.loads(FAKE_DATA)
+        json.dump(data, fp)
+    manage_data.save_budget(420.69, "list 2")
+    json_data = manage_data.read()
+    assert json_data[1]["budget"] == 420.69
+
+def test_get_all_list_names():
+    pass
+
+def test_list_name_and_total_cost():
+    pass
+
+def test_get_number_of_lists():
+    pass
+
+def test_total_list_costs():
+    pass
+
+def test_total_number_items():
+    pass
+
+def test_all_budgets_and_list_names():
+    pass
+
+def test_all_item_costs():
+    pass
+
+def test_calculate_mean():
+    pass
+
+
+

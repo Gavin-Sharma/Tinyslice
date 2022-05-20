@@ -1,67 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/static_files/style.css" />
-    <!-- <script defer src="/static_files/app.js"></script> -->
-    <title>Document</title>
-  </head>
-  <body>
-    <header>
-      <div class="header-container">
-        <img
-          src="/static_files/img/tinyslice_logo.jpg"
-          alt="company logo"
-          class="company-logo"
-          width="100"
-          height="40"
-        />
-        {{ nav.my_navbar.render() }}
-      </div>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/static_files/style.css" />
+  <!-- <script defer src="/static_files/app.js"></script> -->
+  <title>Add Grocery Items</title>
+</head>
 
-    <form class="item-input" action="/grocery#" method="post">
-      <p>List Name (add/create):</p>
-      <p><input type="text" required="required" , name="listName" /></p>
-      <p>Item Name:</p>
-      <p><input type="text" required="required" , name="itemName" /></p>
-      <p>Price:</p>
-      <p>
-        <input
-          type="number"
-          step="any"
-          min="0"
-          required="required"
-          name="itemPrice"
-        />
-      </p>
-      <p class="submit-button"><input type="submit" , value="submit" /></p>
-      <!--Submit-->
-    </form>
-
-    <!--Below will loop over the json data and show it in a list format-->
-    <ul class="grocery-list">
-      {% for i in grocery_lists %}
-      <li>{{ i.list_name }} | Total Cost: {{ i.total_cost }}</li>
-      <ul>
-        {% for grocery in i.grocery %}
-        <li>{{ grocery[0] }}: ${{ grocery[1] }}</li>
-        <form class="remove-button" action="/remove" method="post">
-          <input id="remove-button" type="submit" value="Remove" name="{{ i.grocery[0] }}, {{ i.list_name }}"/>
+<body>
+  <header>
+    <div class="header-container">
+      <!-- <img src="/static_files/img/tinyslice_logo.jpg" alt="company logo" class="company-logo" width="100" height="40" /> -->
+      {{ nav.my_navbar.render() }}
+    </div>
+  </header>
+    <section class="main-area">
+      <div class="list-input">
+        <form class="item-input" action="/grocery#" method="post">
+          <p>List Name (add/create):</p>
+          <p><input type="text" required="required" , name="listName" /></p>
+          <p>Item Name:</p>
+          <p><input type="text" required="required" , name="itemName" /></p>
+          <p>Price:</p>
+          <p>
+            <input
+              type="number"
+              step="any"
+              min="0"
+              required="required"
+              name="itemPrice"
+            />
+          </p>
+          <!-- Deliverable 3 -->
+          <p>Budget (Optional):</p>
+          <p>
+            <input
+              type="number"
+              step="any"
+              min="0"
+              name="budget"
+            />
+          </p>
+          <p class="submit-button">
+            <input id="submit-button" type="submit" , value="submit" />
+          </p>
+          <!--Submit-->
         </form>
-        {% endfor %}
-      </ul>
-      <form class="delete-button" action="/delete" method="post">
-        <input
-          id="delete-button"
-          type="submit"
-          value="Delete"
-          name="{{ i.list_name }}"
-        />
-      </form>
-      {% endfor %}
-    </ul>
+      </div>
+
+      <!--Below will loop over the json data and show it in a list format-->
+      <article class="viewing-list">
+        <div class="grocery-list">
+          <!-- {% for i in grocery_lists %} -->
+          <article class="each-grocery-list">
+            <h1>{{ i.list_name }} | Total Cost: ${{ i.total_cost }}</h1>
+            <h1>Budget: ${{ i.budget }}</h1>
+            <ul>
+              {% for grocery in i.grocery %}
+              <li>{{ grocery[0] }}: ${{ grocery[1] }}</li>
+              <form class="remove-button" action="/remove" method="post">
+                <input
+                  id="remove-button"
+                  type="submit"
+                  value="Remove"
+                  name="{{ i.grocery[0] }}, {{ i.list_name }}"
+                />
+              </form>
+              {% endfor %}
+            </ul>
+            <form class="delete-button" action="/delete" method="post">
+              <input
+                id="delete-button"
+                type="submit"
+                value="Delete"
+                name="{{ i.list_name }}"
+              />
+            </form>
+          </article>
+          <!-- {% endfor %} -->
+        </div>
+      </article>
+    </section>
   </body>
 </html>

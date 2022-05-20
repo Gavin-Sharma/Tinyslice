@@ -6,7 +6,9 @@
     --typewritercharacters: 16;
 }
 
-html, body, section {
+html,
+body,
+section {
     height: 100%;
 }
 
@@ -24,7 +26,9 @@ body {
 }
 
 header {
-    background: #FFFF;
+    background: #2E4057;
+    height: 5%;
+    text-align: center;
 }
 
 header::after {
@@ -41,24 +45,27 @@ header::after {
     float: right;
 }
 
-.navbar{
-    float: right;
+.navbar {
+    float: center;
+    padding-right: 5px;
 }
 
-.navbar ul{
+.navbar ul {
     margin: 0;
     padding: 0;
     list-style: none;
+    height: 100%;
 }
 
-.navbar ul li{
+.navbar ul li {
     display: inline-block;
     margin-left: 20px;
     padding-top: 10px;
+    height: 100%;
 }
 
-.navbar ul li a{
-    color: black;
+.navbar ul li a {
+    color: white;
     text-decoration: none;
     font-weight: 100;
 }
@@ -96,7 +103,8 @@ header::after {
     width: max-content;
 }
 
-.list-title::before, .list-title::after {
+.list-title::before,
+.list-title::after {
     content: '';
     position: absolute;
     top: 0;
@@ -107,16 +115,14 @@ header::after {
 
 .list-title::before {
     background: var(--paper-color);
-    animation: typewriter var(--typewriterspeed)
-        steps(var(--typewritercharacters)) 1s forwards;
+    animation: typewriter var(--typewriterspeed) steps(var(--typewritercharacters)) 1s forwards;
 }
 
 .list-title::after {
     width: 0.125em;
     background: black;
-    animation: typewriter var(--typewriterspeed)
-            steps(var(--typewritercharacters)) 1s forwards,
-        blink 750ms steps(var(--typewritercharacters)) infinite; 
+    animation: typewriter var(--typewriterspeed) steps(var(--typewritercharacters)) 1s forwards,
+        blink 750ms steps(var(--typewritercharacters)) infinite;
 }
 
 /* CSS for each item in the list */
@@ -127,7 +133,8 @@ header::after {
     width: max-content;
 }
 
-.item-one::before, .item-one::after {
+.item-one::before,
+.item-one::after {
     content: '';
     position: absolute;
     top: 0;
@@ -138,17 +145,15 @@ header::after {
 
 .item-one::before {
     background: var(--paper-color);
-    animation: typewriter var(--typewriterspeed)
-        steps(var(--typewritercharacters)) 1s forwards;
+    animation: typewriter var(--typewriterspeed) steps(var(--typewritercharacters)) 1s forwards;
     animation-delay: 2s;
 }
 
 .item-one::after {
     width: 0.125em;
     background: black;
-    animation: typewriter var(--typewriterspeed)
-            steps(var(--typewritercharacters)) 1s forwards,
-        blink 450ms steps(var(--typewritercharacters)) infinite; 
+    animation: typewriter var(--typewriterspeed) steps(var(--typewritercharacters)) 1s forwards,
+        blink 450ms steps(var(--typewritercharacters)) infinite;
     animation-delay: 2s;
 }
 
@@ -159,7 +164,8 @@ header::after {
     width: max-content;
 }
 
-.item-two::before, .item-two::after {
+.item-two::before,
+.item-two::after {
     content: '';
     position: absolute;
     top: 0;
@@ -170,17 +176,15 @@ header::after {
 
 .item-two::before {
     background: var(--paper-color);
-    animation: typewriter var(--typewriterspeed)
-        steps(var(--typewritercharacters)) 1s forwards;
+    animation: typewriter var(--typewriterspeed) steps(var(--typewritercharacters)) 1s forwards;
     animation-delay: 4s;
 }
 
 .item-two::after {
     width: 0.125em;
     background: black;
-    animation: typewriter var(--typewriterspeed)
-            steps(var(--typewritercharacters)) 1s forwards,
-        blink 450ms steps(var(--typewritercharacters)) infinite; 
+    animation: typewriter var(--typewriterspeed) steps(var(--typewritercharacters)) 1s forwards,
+        blink 450ms steps(var(--typewritercharacters)) infinite;
     animation-delay: 4s;
 }
 
@@ -191,7 +195,8 @@ header::after {
     width: max-content;
 }
 
-.item-three::before, .item-three::after {
+.item-three::before,
+.item-three::after {
     content: '';
     position: absolute;
     top: 0;
@@ -202,17 +207,15 @@ header::after {
 
 .item-three::before {
     background: var(--paper-color);
-    animation: typewriter var(--typewriterspeed)
-        steps(var(--typewritercharacters)) 1s forwards;
+    animation: typewriter var(--typewriterspeed) steps(var(--typewritercharacters)) 1s forwards;
     animation-delay: 6s;
 }
 
 .item-three::after {
     width: 0.125em;
     background: black;
-    animation: typewriter var(--typewriterspeed)
-            steps(var(--typewritercharacters)) 1s forwards,
-        blink 450ms steps(var(--typewritercharacters)) infinite; 
+    animation: typewriter var(--typewriterspeed) steps(var(--typewritercharacters)) 1s forwards,
+        blink 450ms steps(var(--typewritercharacters)) infinite;
     animation-delay: 6s;
 }
 
@@ -223,7 +226,8 @@ header::after {
     width: max-content;
 }
 
-.item-four::before, .item-four::after {
+.item-four::before,
+.item-four::after {
     content: '';
     position: absolute;
     top: 0;
@@ -234,17 +238,15 @@ header::after {
 
 .item-four::before {
     background: var(--paper-color);
-    animation: lasttypewriter var(--typewriterspeed)
-        steps(var(--typewritercharacters)) 1s forwards;
+    animation: lasttypewriter var(--typewriterspeed) steps(var(--typewritercharacters)) 1s forwards;
     animation-delay: 8s;
 }
 
 .item-four::after {
     width: 0.125em;
     background: black;
-    animation: lasttypewriter var(--typewriterspeed)
-            steps(var(--typewritercharacters)) 1s forwards,
-        blink 650ms steps(var(--typewritercharacters)) infinite; 
+    animation: lasttypewriter var(--typewriterspeed) steps(var(--typewritercharacters)) 1s forwards,
+        blink 650ms steps(var(--typewritercharacters)) infinite;
     animation-delay: 8s;
 }
 
@@ -252,6 +254,7 @@ header::after {
     to {
         left: 100%;
     }
+
     100% {
         overflow: hidden;
         visibility: hidden;
@@ -305,13 +308,217 @@ header::after {
     font-size: 3rem;
 }
 
+/* CSS for the grocery.html page */
+.main-area {
+    display: flex;
+}
+
+.list-input {
+    margin-top: 10px;
+    margin-left: 20px;
+    border-style: solid;
+    height: fit-content;
+    border-radius: 15px;
+    width: fit-content;
+    padding-bottom: 10px;
+    padding-right: 8px;
+    box-shadow: -10px 5px;
+}
+
+.viewing-list {
+    width: 80%;
+}
+
+.grocery-list {
+    display: flex;
+    justify-content: space-around;
+}
+
+.each-grocery-list {
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    border-style: solid;
+    height: fit-content;
+    background-color: #FFF;
+    border-radius: 5px;
+    box-shadow: 5px 5px;
+}
+
+/* Styling the submit, remove and delete buttons */
+/* CSS for submit button */
+#submit-button {
+    float: right;
+    appearance: button;
+    background-color: #1899D6;
+    border: solid transparent;
+    border-radius: 8px;
+    border-width: 0 0 1px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: din-round, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 2px;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 13px 16px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 50%;
+    padding-bottom: 10px;
+}
+
+#submit-button:after {
+    background-clip: padding-box;
+    background-color: #1CB0F6;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+#submit-button:hover,
+#submit-button:active {
+    background-color: white;
+    background-position: 0 0;
+    color: #1899D6;
+}
+
+/* CSS for delete button*/
+#delete-button {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+}
+
+#delete-button:hover,
+#delete-button:active {
+    background-color: initial;
+    background-position: 0 0;
+    color: #FF4742;
+}
+
+#delete-button:active {
+    opacity: .5;
+}
+
+/* CSS for remove button*/
+#remove-button {
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #1A1A1A;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #3B3B3B;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 12px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 10px;
+    min-width: 0;
+    outline: none;
+    padding: 2px 6px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: fit-content;
+    will-change: transform;
+}
+
+#remove-button:disabled {
+    pointer-events: none;
+}
+
+#remove-button:hover,
+#remove-button:active {
+    background-color: black;
+    background-position: 0 0;
+    color: white;
+}
+
+#remove-button:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+/* CSS for Overview Page */
+.overview-title {
+    padding-left: 10%;
+    font-size: 50px;
+}
+
+.overview-area {
+    display: flex;
+    justify-content: space-around;
+}
+
+.info-area {
+    background-color: white;
+    border-style: solid;
+    border-radius: 15px;
+    height: fit-content;
+    padding: 10px;
+}
+
+.piechart-display {
+    border-style: solid;
+    width: fit-content;
+    height: fit-content;
+
+}
+
 /* Contact us page */
 .main-screen {
     display: flex;
     justify-content: space-around;
 }
 
-.main-contact, .photo-staff {
+.main-contact,
+.photo-staff {
     padding-top: 100px;
 }
 
@@ -327,7 +534,7 @@ header::after {
 
 table {
     border-spacing: 0px;
-    
+
 }
 
 th {
@@ -361,10 +568,6 @@ footer {
     width: max-content;
 }
 
-.submit-button {
-    text-align: end;
-}
-
 @media (max-width: 516px) {
     .welcome {
         font-size: 2rem;
@@ -383,7 +586,7 @@ footer {
         display: flex;
         flex-direction: column;
     }
-    
+
     .main-contact {
         display: flex;
         flex-direction: column;
@@ -414,5 +617,66 @@ footer {
         text-align: center;
         width: 80%;
         border-radius: 10%;
+    }
+}
+
+@media (max-width: 601px) {
+    .company-logo {
+        display: none;
+    }
+
+    .main-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .grocery-list {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .list-input {
+        margin-top: 10px;
+        margin-left: 0px;
+        margin-bottom: 5px;
+    }
+
+    .viewing-list {
+        padding: 0px;
+        margin: 0px;
+        align-items: center;
+    }
+
+    .each-grocery-list {
+        align-items: center;
+        margin: 5px;
+        box-shadow: -5px 5px;
+    }
+}
+
+@media (max-width: 1115px) {
+    .overview-title {
+        margin: 10px;
+        font-size: 40px;
+    }
+
+    .overview-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-area {
+        width: fit-content;
+        margin-bottom: 10px;
+    }
+
+    .piechart-display {
+        width: 300px;
+        align-content: center;
     }
 }

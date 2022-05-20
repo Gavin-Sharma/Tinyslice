@@ -1,1 +1,1 @@
-[{"list_name": "list2", "total_cost": 0, "grocery": []}]
+[{"list_name": "list 1 ", "total_cost": 9.0, "budget": 100.0, "grocery": [["apple", 9.0]]}, {"list_name": "list 2", "total_cost": 2.0, "budget": 300.0, "grocery": [["pickle", 2.0]]}]

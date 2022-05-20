@@ -1,4 +1,5 @@
 import json
+import statistics
 
 
 
@@ -7,6 +8,7 @@ def to_dict(list_name, item_name, item_price):
     return  {
             "list_name": list_name,
             "total_cost": 0,
+            "budget": 0,
             "grocery":[[item_name, float(item_price)]]
             }
 
@@ -92,12 +94,6 @@ def delete_item(grocery_list, item):
     """Deletes grocery items from grocery list.
     The grocery_list arugment is from which grocery list to delete the item from.
     The item argument is what item to delete from the gorcery list."""
-    # open data.json
-    
-    with open("static_files/text.txt", "w") as inside:
-        inside.write(grocery_list)
-        inside.write(item)
-        inside.write("\nThis is working")
 
     with open("static_files/data.json", "r") as fp:
         # load the json as a python object
@@ -118,14 +114,101 @@ def delete_item(grocery_list, item):
     # return the data
     return json_data
 
+def get_all_list_names():
+    """Gets all the list names from the data.json file and returns a list"""
+    
+    json_data = read() #read data
+    list_names = [data["list_name"] for data in json_data] #List Comprehension (appends list names into the list->[])
+    return list_names
+
+def list_name_and_total_cost():
+    """reutrns a list of all the grocery list names and item costs"""
+    list_names = get_all_list_names()
+
+    list_name_and_cost = {'List Name' : 'Total Cost'} #notice i have a key and value dont remove it. Google charts does not like when it is removed
+    for list_name in list_names:
+        total_list_cost = get_total_cost(list_name)
+        list_name_and_cost[list_name] = total_list_cost
+        
+
+    return list_name_and_cost
+
+def get_number_of_lists():
+    """
+    gets all the list names using the get_all_list_names funtion and returns the length
+    of the number of list names
+    """
+    list_names = get_all_list_names()
+    return len(list_names)
+
+def total_list_costs():
+    """
+    calculates total item costs for all lists you have
+    in the data_json file and returns the float value e.g 43.0
+    """
+    list_names = get_all_list_names()
+    
+    total_cost = 0 #track total cost
+    for list_name in list_names:
+        single_list_cost = get_total_cost(list_name) 
+        total_cost += single_list_cost
+    return total_cost
+
+def total_number_items():
+    """In every list this funtion will get the total number of items a user wants to buy"""
+
+    json_data = read()
+
+    number_of_items = 0 #track number of items in the lists 
+    for data in json_data:
+        number_of_items += len(data["grocery"])
+    return number_of_items
+
+def all_budgets_and_list_names():
+    """Gets all the list names and budgets and returns a list [[l1, 5]]"""
+    
+    json_data = read() #read data
+    budget_and_list_name = [[data["list_name"], data["budget"]] for data in json_data]
+    return budget_and_list_name
+
+def all_item_costs():
+    """gets all items cost in each list and returns a list of item costs"""
+
+    json_data = read()
+
+    item_costs = [] #track all item costs
+    for data in json_data:
+        for grocery_item in data["grocery"]:
+            item_costs.append(grocery_item[1]) #appends the grocery item cost
+    
+    return item_costs
+    
+def calculate_mean():
+    """gets the stats mean/avg of all the item costs in the grocery lists"""
+    data = all_item_costs()
+    if len(data) == 0: 
+        data = [0]
+
+    return "{:.5f}".format(statistics.mean(data))
 
 
+def save_budget(budget: float, list_name:str):
+    if budget == "":
+        budget = 0.0
+        
+    with open("static_files/data.json") as fp:
+        json_data = json.load(fp)
 
-            
+    for grocery_list in json_data:
+        if grocery_list["list_name"] == list_name:
+            grocery_list.update({"budget": float(budget)})
+            break
+    
+    with open("static_files/data.json", "w") as fp:
+        json.dump(json_data, fp)    
 
 
 def main():
     pass
-
 if __name__ =="__main__":
     main()

@@ -25,6 +25,7 @@ def homepage():
 @app.route("/grocery", methods = ["POST", "GET"])
 def grocery():
     """This page allows users to only add things to a grocery list"""
+
     if request.method == "POST":
         list_name_data = request.form["listName"] #get list name from form
         item_name_data = request.form["itemName"] #get item name from form
@@ -37,12 +38,13 @@ def grocery():
         save_total_list_cost = save_total_cost(list_name_data) #saves total cost of each list
         save_budget_data = save_budget(budget_data, list_name_data)
 
-        #process to show data
+        #process to show data (re-read data)
         json_data = read()
-
-        
         return render_template("grocery.html", grocery_lists = json_data)
-    return render_template("grocery.html")
+    
+    else:
+        json_data = read()
+        return render_template("grocery.html", grocery_lists = json_data)
 
 @app.route("/delete", methods = ["POST"])
 def delete():

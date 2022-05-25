@@ -17,7 +17,8 @@ FAKE_DATA = """[
                 "pears",
                 "4"
             ]
-        ]
+        ],
+        "budget": 69
     },
     {
         "list_name": "list 2",
@@ -30,7 +31,8 @@ FAKE_DATA = """[
                 "oranges",
                 "3"
             ]
-        ]
+        ],
+        "budget": 420
     }
         
 ]"""
@@ -150,8 +152,13 @@ def test_total_number_items(mock_file):
     number_of_items = manage_data.total_number_items()
     assert number_of_items == 4
 
-def test_all_budgets_and_list_names():
-    pass
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_all_budgets_and_list_names(mock_file):
+    lists_and_budgets = manage_data.all_budgets_and_list_names()
+    assert lists_and_budgets[0][0] == "list 1"
+    assert lists_and_budgets[0][1] == 69
+    assert lists_and_budgets[1][0] == "list 2"
+    assert lists_and_budgets[1][1] == 420
 
 def test_all_item_costs():
     pass

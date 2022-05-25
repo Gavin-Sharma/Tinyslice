@@ -102,10 +102,11 @@ def delete_item(grocery_list, item):
         index = next((index for (index, d) in enumerate(json_data) if d["list_name"] == grocery_list), None)
         # loop through the grocery items in the grocery list
         # the grocery list is accessed using the index found above
-        for groceries in json_data[index]["grocery"]:
-            # if the grocery item matches the item argument, remove the grocery item from the groceries list
-            if groceries[0] == item:
-                json_data[index]["grocery"].remove(groceries)
+        if index is not None:
+            for groceries in json_data[index]["grocery"]:
+                # if the grocery item matches the item argument, remove the grocery item from the groceries list
+                if groceries[0] == item:
+                    json_data[index]["grocery"].remove(groceries)
 
     with open("static_files/data.json", "w") as fp:
         # this will save the data
@@ -193,7 +194,7 @@ def calculate_mean():
 
 
 def save_budget(budget: float, list_name:str):
-    if budget is not "" or None:
+    if budget != "" or None:
         
         with open("static_files/data.json") as fp:
             json_data = json.load(fp)

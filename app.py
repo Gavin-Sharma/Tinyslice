@@ -46,32 +46,21 @@ def grocery():
         json_data = read()
         return render_template("grocery.html", grocery_lists = json_data)
 
-@app.route("/delete", methods = ["POST"])
+@app.route("/grocery/delete", methods = ["POST"])
 def delete():
-    json_data = delete_list(list(request.form.to_dict())[0])
-    return render_template("grocery.html", grocery_lists = json_data)
-
-@app.route("/remove", methods = ["POST"])
-def remove():
-
-    data_retrieved = []
-    # both the list item and list name are returned as a string in the first index of the list
-    # the list is turned into a string and the split method is used to separate the item and list name
-    form_data = str(list(request.form.to_dict())[0])
-
-    # since the retireved data is in a string form, I am removing all the characters that are not part of the grocery name
-    # after removing the characters, I converted it to a list and grabbed the grocery list name and the grocery name
-    form_data_one = form_data.replace(",", "")
-    form_data_two = form_data_one.replace("[", "")
-    form_data_three = form_data_two.replace("]", "")
-    form_data_four = form_data_three.replace("'", "")
-    form_data_list = form_data_four.split(' ')
-    list_item = form_data_list[0]
-    list_name = form_data_list[2]
-
-    save_total_cost(list_name)
-    json_data = delete_item(list_name, list_item)
-    return render_template("grocery.html", grocery_lists = json_data)
+    list_name = request.args.get("list-name", type=str)
+    item = request.args.get("item", type=str)
+    try:
+        if list_name is None:
+            raise ValueError
+        if list_name and item is None:
+            delete_list(list_name)
+            return redirect(url_for("grocery"), 302)
+        elif list_name and item:
+            delete_item(list_name, item)
+            return redirect(url_for("grocery"), 302)
+    except ValueError:
+        return "Error 400: provide a list name"
 
 
 @app.route("/contact")

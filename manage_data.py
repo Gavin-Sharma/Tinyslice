@@ -30,7 +30,7 @@ def get_total_cost(list_name):
             total_cost = 0
 
             for item_cost in data["grocery"]:
-                total_cost += float(item_cost[1]) #adds item cost to total_cost | Note that I added float is mainly to help the pytest convert str into
+                total_cost += float(item_cost[1]) #adds item cost to total_cost | Note that I added float is mainly to help the pytest convert str into float
             
             #return the total cost for the list
             return total_cost

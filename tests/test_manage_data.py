@@ -102,13 +102,27 @@ def test_to_dict():
                          "grocery": [["Apple", 0.99]]
                          }
 
-
-def test_get_total_cost():
-    pass
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_get_total_cost(mock_file):
+    json_data = manage_data.read()
+    assert (manage_data.get_total_cost("list 1")) == 9.0
+    assert (manage_data.get_total_cost("list 2")) == 10.0
 
 
 def test_save_total_cost():
-    pass
+    #writes the fake data to the json file to set up the template I want
+    with open("static_files/data.json", "w") as fp:
+        data = json.loads(FAKE_DATA)
+        json.dump(data, fp)
+
+    #get and saves the total cost
+    manage_data.save_total_cost("list 2")
+
+    #reads the json file
+    json_data = manage_data.read()
+
+    assert json_data[1]["total_cost"] == 10.0
+    
 
 def test_save_budget():
     # write the test data to the file

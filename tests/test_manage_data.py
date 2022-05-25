@@ -131,8 +131,10 @@ def test_get_number_of_lists():
 def test_total_list_costs():
     pass
 
-def test_total_number_items():
-    pass
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_total_number_items(mock_file):
+    number_of_items = manage_data.total_number_items()
+    assert number_of_items == 4
 
 def test_all_budgets_and_list_names():
     pass

@@ -55,9 +55,11 @@ def delete():
             raise ValueError
         if list_name and item is None:
             delete_list(list_name)
+            save_total_list_cost = save_total_cost(list_name) #saves total cost of each list
             return redirect(url_for("grocery"), 302)
         elif list_name and item:
             delete_item(list_name, item)
+            save_total_list_cost = save_total_cost(list_name) #saves total cost of each list
             return redirect(url_for("grocery"), 302)
     except ValueError:
         return "Error 400: provide a list name"

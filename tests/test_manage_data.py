@@ -102,10 +102,11 @@ def test_to_dict():
                          "grocery": [["Apple", 0.99]]
                          }
 
-
-def test_get_total_cost():
-    pass
-
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_get_total_cost(mock_file):
+    json_data = manage_data.read()
+    assert (manage_data.get_total_cost("list 1")) == 9.0
+    assert (manage_data.get_total_cost("list 2")) == 10.0
 
 def test_save_total_cost():
     pass

@@ -134,13 +134,10 @@ def test_save_budget():
     json_data = manage_data.read()
     assert json_data[1]["budget"] == 420.69
 
-def test_get_all_list_names():
-    with open("static_files/data.json", "w") as fp:
-        data = json.loads(FAKE_DATA)
-        json.dump(data, fp)
-    json_data = manage_data.read()
-    assert json_data[0]["list_name"] == "list 1"
-    assert json_data[1]["list_name"] == "list 2"
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_get_all_list_names(mock_file):
+    list_names = manage_data.get_all_list_names()
+    assert list_names == ['list 1', 'list 2']
 
 def test_get_number_of_lists():
     pass

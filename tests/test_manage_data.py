@@ -142,10 +142,11 @@ def test_get_all_list_names():
     assert json_data[0]["list_name"] == "list 1"
     assert json_data[1]["list_name"] == "list 2"
 
-def test_get_number_of_lists():
-    with open("static_files/data.json", "r") as fp:
-        data = json.loads(FAKE_DATA)
-    assert len(data) == 2
+
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_get_number_of_lists(mock_file):
+    test_data = manage_data.get_number_of_lists()
+    assert test_data == 2
 
 def test_total_list_costs():
     pass

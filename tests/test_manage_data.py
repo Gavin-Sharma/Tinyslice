@@ -139,8 +139,11 @@ def test_get_all_list_names(mock_file):
     list_names = manage_data.get_all_list_names()
     assert list_names == ['list 1', 'list 2']
 
-def test_get_number_of_lists():
-    pass
+
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_get_number_of_lists(mock_file):
+    test_data = manage_data.get_number_of_lists()
+    assert test_data == 2
 
 def test_total_list_costs():
     pass

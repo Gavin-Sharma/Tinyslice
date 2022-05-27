@@ -17,7 +17,8 @@ FAKE_DATA = """[
                 "pears",
                 "4"
             ]
-        ]
+        ],
+        "budget": 69
     },
     {
         "list_name": "list 2",
@@ -30,7 +31,8 @@ FAKE_DATA = """[
                 "oranges",
                 "3"
             ]
-        ]
+        ],
+        "budget": 420
     }
 ]"""
 
@@ -101,13 +103,27 @@ def test_to_dict():
                          "grocery": [["Apple", 0.99]]
                          }
 
-
-def test_get_total_cost():
-    pass
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_get_total_cost(mock_file):
+    json_data = manage_data.read()
+    assert (manage_data.get_total_cost("list 1")) == 9.0
+    assert (manage_data.get_total_cost("list 2")) == 10.0
 
 
 def test_save_total_cost():
-    pass
+    #writes the fake data to the json file to set up the template I want
+    with open("static_files/data.json", "w") as fp:
+        data = json.loads(FAKE_DATA)
+        json.dump(data, fp)
+
+    #get and saves the total cost
+    manage_data.save_total_cost("list 2")
+
+    #reads the json file
+    json_data = manage_data.read()
+
+    assert json_data[1]["total_cost"] == 10.0
+    
 
 def test_save_budget():
     # write the test data to the file
@@ -132,11 +148,18 @@ def test_get_number_of_lists():
 def test_total_list_costs():
     pass
 
-def test_total_number_items():
-    pass
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_total_number_items(mock_file):
+    number_of_items = manage_data.total_number_items()
+    assert number_of_items == 4
 
-def test_all_budgets_and_list_names():
-    pass
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_all_budgets_and_list_names(mock_file):
+    lists_and_budgets = manage_data.all_budgets_and_list_names()
+    assert lists_and_budgets[0][0] == "list 1"
+    assert lists_and_budgets[0][1] == 69
+    assert lists_and_budgets[1][0] == "list 2"
+    assert lists_and_budgets[1][1] == 420
 
 def test_all_item_costs():
     pass
@@ -144,7 +167,5 @@ def test_all_item_costs():
 def test_calculate_mean():
     pass
 
-def test_calculate_standard_deviation():
-    pass
 
 

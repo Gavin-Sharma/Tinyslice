@@ -26,7 +26,9 @@ body {
 }
 
 header {
-    background: #FFFF;
+    background: #2E4057;
+    height: 5%;
+    text-align: center;
 }
 
 header::after {
@@ -44,23 +46,26 @@ header::after {
 }
 
 .navbar {
-    float: right;
+    float: center;
+    padding-right: 5px;
 }
 
 .navbar ul {
     margin: 0;
     padding: 0;
     list-style: none;
+    height: 100%;
 }
 
 .navbar ul li {
     display: inline-block;
     margin-left: 20px;
     padding-top: 10px;
+    height: 100%;
 }
 
 .navbar ul li a {
-    color: black;
+    color: white;
     text-decoration: none;
     font-weight: 100;
 }
@@ -480,6 +485,32 @@ header::after {
     transform: translateY(0);
 }
 
+/* CSS for Overview Page */
+.overview-title {
+    padding-left: 10%;
+    font-size: 50px;
+}
+
+.overview-area {
+    display: flex;
+    justify-content: space-around;
+}
+
+.info-area {
+    background-color: white;
+    border-style: solid;
+    border-radius: 15px;
+    height: fit-content;
+    padding: 10px;
+}
+
+.piechart-display {
+    border-style: solid;
+    width: fit-content;
+    height: fit-content;
+
+}
+
 /* Contact us page */
 .main-screen {
     display: flex;
@@ -550,7 +581,6 @@ footer {
 
 /* CSS for mobile devices */
 @media (max-width: 766px) {
-
     /* contact us page */
     .main-screen {
         display: flex;
@@ -591,9 +621,8 @@ footer {
 }
 
 @media (max-width: 601px) {
-    img {
-        width: 90px;
-        height: 37px;
+    .company-logo {
+        display: none;
     }
 
     .main-area {
@@ -626,5 +655,28 @@ footer {
         align-items: center;
         margin: 5px;
         box-shadow: -5px 5px;
+    }
+}
+
+@media (max-width: 1115px) {
+    .overview-title {
+        margin: 10px;
+        font-size: 40px;
+    }
+
+    .overview-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-area {
+        width: fit-content;
+        margin-bottom: 10px;
+    }
+
+    .piechart-display {
+        width: 300px;
+        align-content: center;
     }
 }

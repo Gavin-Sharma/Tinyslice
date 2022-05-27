@@ -148,8 +148,10 @@ def test_get_number_of_lists(mock_file):
     test_data = manage_data.get_number_of_lists()
     assert test_data == 2
 
-def test_total_list_costs():
-    pass
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_total_list_costs(mock_file):
+    test_list = manage_data.total_list_costs()
+    assert test_list == 19.0
 
 @patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
 def test_total_number_items(mock_file):

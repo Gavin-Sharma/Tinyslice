@@ -11,28 +11,29 @@ FAKE_DATA = """[
         "grocery": [
             [
                 "apples",
-                "5"
+                5.0
             ],
             [
                 "pears",
-                "4"
+                4.0
             ]
-        ]
+        ],
+        "budget": 69
     },
     {
         "list_name": "list 2",
         "grocery": [
             [
                 "bananas",
-                "7"
+                7.0
             ],
             [
                 "oranges",
-                "3"
+                3.0
             ]
-        ]
+        ],
+        "budget": 420
     }
-        
 ]"""
 
 # opens the fake json as if it were a real file
@@ -45,9 +46,9 @@ def test_read(mock_file):
     json_data = manage_data.read()
     assert json_data[0]["list_name"] == "list 1"
     assert json_data[0]["grocery"][0][0] == "apples"
-    assert json_data[0]["grocery"][0][1] == "5"
+    assert json_data[0]["grocery"][0][1] == 5.0
     assert json_data[0]["grocery"][1][0] == "pears"
-    assert json_data[0]["grocery"][1][1] == "4"
+    assert json_data[0]["grocery"][1][1] == 4.0
 
 def test_delete_list():
     # write the test data to the file
@@ -102,13 +103,27 @@ def test_to_dict():
                          "grocery": [["Apple", 0.99]]
                          }
 
-
-def test_get_total_cost():
-    pass
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_get_total_cost(mock_file):
+    json_data = manage_data.read()
+    assert (manage_data.get_total_cost("list 1")) == 9.0
+    assert (manage_data.get_total_cost("list 2")) == 10.0
 
 
 def test_save_total_cost():
-    pass
+    #writes the fake data to the json file to set up the template I want
+    with open("static_files/data.json", "w") as fp:
+        data = json.loads(FAKE_DATA)
+        json.dump(data, fp)
+
+    #get and saves the total cost
+    manage_data.save_total_cost("list 2")
+
+    #reads the json file
+    json_data = manage_data.read()
+
+    assert json_data[1]["total_cost"] == 10.0
+    
 
 def test_save_budget():
     # write the test data to the file
@@ -119,29 +134,44 @@ def test_save_budget():
     json_data = manage_data.read()
     assert json_data[1]["budget"] == 420.69
 
-def test_get_all_list_names():
-    pass
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_get_all_list_names(mock_file):
+    list_names = manage_data.get_all_list_names()
+    assert list_names == ['list 1', 'list 2']
 
-def test_list_name_and_total_cost():
-    pass
 
-def test_get_number_of_lists():
-    pass
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_get_number_of_lists(mock_file):
+    test_data = manage_data.get_number_of_lists()
+    assert test_data == 2
 
-def test_total_list_costs():
-    pass
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_total_list_costs(mock_file):
+    test_list = manage_data.total_list_costs()
+    assert test_list == 19.0
 
-def test_total_number_items():
-    pass
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_total_number_items(mock_file):
+    number_of_items = manage_data.total_number_items()
+    assert number_of_items == 4
 
-def test_all_budgets_and_list_names():
-    pass
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_all_budgets_and_list_names(mock_file):
+    lists_and_budgets = manage_data.all_budgets_and_list_names()
+    assert lists_and_budgets[0][0] == "list 1"
+    assert lists_and_budgets[0][1] == 69
+    assert lists_and_budgets[1][0] == "list 2"
+    assert lists_and_budgets[1][1] == 420
 
-def test_all_item_costs():
-    pass
-
-def test_calculate_mean():
-    pass
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_all_item_costs(mock_file):
+    test_list = manage_data.all_item_costs()
+    assert test_list == [5.0, 4.0, 7.0, 3.0]
+    
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_calculate_mean(mock_file):
+    test_list = manage_data.calculate_mean()
+    assert test_list == '4.75000'
 
 
 

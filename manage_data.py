@@ -30,7 +30,7 @@ def get_total_cost(list_name):
             total_cost = 0
 
             for item_cost in data["grocery"]:
-                total_cost += item_cost[1] #adds item cost to total_cost
+                total_cost += float(item_cost[1]) #adds item cost to total_cost | Note that I added float is mainly to help the pytest convert str into float
             
             #return the total cost for the list
             return total_cost
@@ -46,8 +46,7 @@ def save_total_cost(list_name):
             data["total_cost"] = total_cost #update the total cost to json_data
     
     #Writes to the json file
-    with open("static_files/data.json", "w") as f:
-        json.dump(json_data, f)
+    save_json(json_data)
 
 def save(data, list_name, item_name, item_price):
     #Reads json file
@@ -68,8 +67,7 @@ def save(data, list_name, item_name, item_price):
         json_data.append(data)
         
     #Writes to the json file
-    with open("static_files/data.json", "w") as f:
-        json.dump(json_data, f)
+    save_json(json_data)
     
 def delete_list(name):
     """Deletes a grocery list based off the name of the grocery list
@@ -83,12 +81,8 @@ def delete_list(name):
             # if the name of the grocery list matches the name given as the function parameter, delete the grocery list
             if grocery_list["list_name"] == name:
                 json_data.remove(grocery_list)
-
-    with open("static_files/data.json", "w") as fp:
-        # this would save the data to the file
-        json.dump(json_data, fp)
-    #returns the data
-    return json_data
+    #save the data
+    save_json(json_data)
 
 def delete_item(grocery_list, item):
     """Deletes grocery items from grocery list.
@@ -102,17 +96,13 @@ def delete_item(grocery_list, item):
         index = next((index for (index, d) in enumerate(json_data) if d["list_name"] == grocery_list), None)
         # loop through the grocery items in the grocery list
         # the grocery list is accessed using the index found above
-        for groceries in json_data[index]["grocery"]:
-            # if the grocery item matches the item argument, remove the grocery item from the groceries list
-            if groceries[0] == item:
-                json_data[index]["grocery"].remove(groceries)
-
-    with open("static_files/data.json", "w") as fp:
-        # this will save the data
-        json.dump(json_data, fp)
-
-    # return the data
-    return json_data
+        if index is not None:
+            for groceries in json_data[index]["grocery"]:
+                # if the grocery item matches the item argument, remove the grocery item from the groceries list
+                if groceries[0] == item:
+                    json_data[index]["grocery"].remove(groceries)
+    #save the data
+    save_json(json_data)
 
 def get_all_list_names():
     """Gets all the list names from the data.json file and returns a list"""
@@ -193,20 +183,27 @@ def calculate_mean():
 
 
 def save_budget(budget: float, list_name:str):
-    if budget == "":
-        budget = 0.0
+    if budget != "" or None:
         
-    with open("static_files/data.json") as fp:
-        json_data = json.load(fp)
+        with open("static_files/data.json") as fp:
+            json_data = json.load(fp)
 
-    for grocery_list in json_data:
-        if grocery_list["list_name"] == list_name:
-            grocery_list.update({"budget": float(budget)})
-            break
-    
-    with open("static_files/data.json", "w") as fp:
-        json.dump(json_data, fp)    
+        for grocery_list in json_data:
+            if grocery_list["list_name"] == list_name:
+                grocery_list.update({"budget": float(budget)})
+                break
+        #save the file
+        save_json(json_data)
+    else:
+        budget = budget
 
+def save_json(json_data: list):
+    """Saves the json_data into the data json file"""
+    if type(json_data) is list:
+        with open("static_files/data.json", "w") as fp:
+            json.dump(json_data, fp)
+    else:
+        raise TypeError
 
 def main():
     pass

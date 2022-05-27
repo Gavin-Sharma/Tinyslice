@@ -199,8 +199,11 @@ def save_budget(budget: float, list_name:str):
 
 def save_json(json_data: list):
     """Saves the json_data into the data json file"""
-    with open("static_files/data.json", "w") as fp:
-        json.dump(json_data, fp)
+    if type(json_data) is list:
+        with open("static_files/data.json", "w") as fp:
+            json.dump(json_data, fp)
+    else:
+        raise TypeError
 
 def main():
     pass

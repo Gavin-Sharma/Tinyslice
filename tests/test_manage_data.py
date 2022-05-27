@@ -11,11 +11,11 @@ FAKE_DATA = """[
         "grocery": [
             [
                 "apples",
-                "5"
+                5.0
             ],
             [
                 "pears",
-                "4"
+                4.0
             ]
         ],
         "budget": 69
@@ -25,11 +25,11 @@ FAKE_DATA = """[
         "grocery": [
             [
                 "bananas",
-                "7"
+                7.0
             ],
             [
                 "oranges",
-                "3"
+                3.0
             ]
         ],
         "budget": 420
@@ -46,9 +46,9 @@ def test_read(mock_file):
     json_data = manage_data.read()
     assert json_data[0]["list_name"] == "list 1"
     assert json_data[0]["grocery"][0][0] == "apples"
-    assert json_data[0]["grocery"][0][1] == "5"
+    assert json_data[0]["grocery"][0][1] == 5.0
     assert json_data[0]["grocery"][1][0] == "pears"
-    assert json_data[0]["grocery"][1][1] == "4"
+    assert json_data[0]["grocery"][1][1] == 4.0
 
 def test_delete_list():
     # write the test data to the file
@@ -166,10 +166,12 @@ def test_all_budgets_and_list_names(mock_file):
 @patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
 def test_all_item_costs(mock_file):
     test_list = manage_data.all_item_costs()
-    assert test_list == ['5', '4', '7', '3']
-
-def test_calculate_mean():
-    pass
+    assert test_list == [5.0, 4.0, 7.0, 3.0]
+    
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_calculate_mean(mock_file):
+    test_list = manage_data.calculate_mean()
+    assert test_list == '4.75000'
 
 
 

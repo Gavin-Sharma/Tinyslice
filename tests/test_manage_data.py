@@ -163,8 +163,10 @@ def test_all_budgets_and_list_names(mock_file):
     assert lists_and_budgets[1][0] == "list 2"
     assert lists_and_budgets[1][1] == 420
 
-def test_all_item_costs():
-    pass
+@patch("builtins.open", new_callable=mock_open, read_data=FAKE_DATA)
+def test_all_item_costs(mock_file):
+    test_list = manage_data.all_item_costs()
+    assert test_list == ['5', '4', '7', '3']
 
 def test_calculate_mean():
     pass

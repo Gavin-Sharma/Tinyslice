@@ -1,4 +1,4 @@
-# Grocery List Tracker
+# Grocery List Tracker 
 Welcome to Tinyslice,
 
 ## What Does Our Application Do?

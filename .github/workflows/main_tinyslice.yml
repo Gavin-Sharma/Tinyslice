@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'tinyslice'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D1C5B1FA8E564C77A6C09BD3330091AA }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AB21F95D4D984F60A793A886DCB6AF6A }}
